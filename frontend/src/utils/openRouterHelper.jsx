@@ -1,6 +1,5 @@
 // src/utils/openRouterHelper.js
-const apiKey = "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";
-
+const apiKey = "add-Ur-api-key-here";
 export async function getGeminiText(prompt) {
     try {
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
