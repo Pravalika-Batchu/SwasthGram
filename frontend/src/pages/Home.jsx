@@ -1,165 +1,184 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import { formatDistanceToNow } from 'date-fns';
+import axios from '../axiosConfig';
+import MapView from './MapView';
+import { getGeminiText } from '../utils/openRouterHelper';
 import './Home.css';
-
-const icons = {
-    garbage: new L.Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/679/679922.png',
-        iconSize: [30, 30],
-        iconAnchor: [15, 30],
-    }),
-    stagnant_water: new L.Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/1123/1123525.png',
-        iconSize: [30, 30],
-        iconAnchor: [15, 30],
-    }),
-    toilet: new L.Icon({
-        iconUrl: 'https://cdn-icons-png.flaticon.com/512/2284/2284985.png',
-        iconSize: [30, 30],
-        iconAnchor: [15, 30],
-    }),
-};
-
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png',
-    shadowUrl: 'https://unpkg.com/leaflet@1.9.3/dist/images/marker-shadow.png',
-});
-
-const dangerIcon = new L.Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/619/619034.png',
-    iconSize: [35, 35],
-    iconAnchor: [17, 35],
-});
-
-const AutoFocus = ({ position }) => {
-    const map = useMap();
-    useEffect(() => {
-        if (position) map.flyTo(position, 12);
-    }, [position, map]);
-    return null;
-};
 
 const Home = () => {
     const [reports, setReports] = useState([]);
+    const [selectedFilter, setSelectedFilter] = useState('');
+    const [selectedTimeFilter, setSelectedTimeFilter] = useState('all');
     const [filter, setFilter] = useState('');
-    const [latestPosition, setLatestPosition] = useState(null);
-    const [highRiskZones, setHighRiskZones] = useState([]);
     const [timeFilter, setTimeFilter] = useState('all');
+    const [highRiskZones, setHighRiskZones] = useState([]);
+    const [communityInsight, setCommunityInsight] = useState('');
+    const [loadingInsight, setLoadingInsight] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/reports/').then(res => {
-            setReports(res.data);
-            if (res.data.length > 0) {
-                const last = res.data[res.data.length - 1];
-                setLatestPosition([last.latitude, last.longitude]);
-            }
-        });
-        axios.get('http://localhost:8000/api/highrisk-zones/').then(res => setHighRiskZones(res.data));
+        const token = localStorage.getItem('access');
+
+        axios.get('http://localhost:8000/api/reports/', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(res => setReports(res.data))
+            .catch(err => console.error('Failed to load reports:', err));
+
+        axios.get('http://localhost:8000/api/highrisk-zones/')
+            .then(res => setHighRiskZones(res.data))
+            .catch(err => console.error('Failed to load risk zones:', err));
     }, []);
 
     const filteredReports = reports.filter(report => {
         const issueMatch = !filter || report.issue_type === filter;
         const days = timeFilter === 'all' ? Infinity : parseInt(timeFilter);
-        const diff = (new Date() - new Date(report.created_at)) / (1000 * 60 * 60 * 24);
-        return issueMatch && diff <= days;
+        const reportAgeInDays = (new Date() - new Date(report.created_at)) / (1000 * 60 * 60 * 24);
+        return issueMatch && reportAgeInDays <= days;
     });
+
+    const handleDelete = (id) => {
+        const token = localStorage.getItem('access');
+        if (window.confirm('Are you sure you want to delete this report?')) {
+            axios.delete(`http://localhost:8000/api/reports/${id}/delete/`, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+                .then(() => {
+                    setReports(prev => prev.filter(r => r.id !== id));
+                    alert('✅ Report deleted!');
+                })
+                .catch(err => {
+                    console.error('Delete error:', err);
+                    alert('❌ Failed to delete the report.');
+                });
+        }
+    };
+
+    const generateCommunityInsight = async () => {
+        if (filteredReports.length === 0) {
+            alert('No reports to analyze!');
+            return;
+        }
+
+        setLoadingInsight(true);
+        const summaryData = filteredReports.map(r => `- ${r.issue_type.replace('_', ' ')} at (${r.latitude}, ${r.longitude})`).join('\n');
+
+        const aiPrompt = `
+You're a public health AI. Based on hygiene issue reports below, give a short 3-line summary of the potential risk in this area. Mention likely diseases and urgency.
+
+Reports:
+${summaryData}
+        `.trim();
+
+        const result = await getGeminiText(aiPrompt);
+        setCommunityInsight(result);
+        setLoadingInsight(false);
+    };
 
     return (
         <div className="home-page">
             <h2 className="page-title">🧼 SwasthGram Hygiene Map</h2>
 
             <div className="filters">
-                <select onChange={e => setFilter(e.target.value)} value={filter}>
+                <select onChange={e => setSelectedFilter(e.target.value)} value={selectedFilter}>
                     <option value="">All Issues</option>
                     <option value="garbage">Garbage</option>
                     <option value="stagnant_water">Stagnant Water</option>
                     <option value="toilet">Toilet</option>
                 </select>
 
-                <select onChange={e => setTimeFilter(e.target.value)} value={timeFilter}>
+                <select onChange={e => setSelectedTimeFilter(e.target.value)} value={selectedTimeFilter}>
                     <option value="all">All Time</option>
                     <option value="7">Last 7 Days</option>
                     <option value="30">Last 30 Days</option>
                 </select>
+
+                <button
+                    onClick={() => {
+                        setFilter(selectedFilter);
+                        setTimeFilter(selectedTimeFilter);
+                    }}
+                    style={{
+                        width: '80px',
+                        height: '32px',
+                        fontSize: '12px',
+                        backgroundColor: '#007bff',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        marginRight: '8px'
+                    }}
+                >
+                    Apply
+                </button>
+
+                <button
+                    onClick={() => {
+                        setSelectedFilter('');
+                        setSelectedTimeFilter('all');
+                        setFilter('');
+                        setTimeFilter('all');
+                    }}
+                    style={{
+                        width: '80px',
+                        height: '32px',
+                        fontSize: '12px',
+                        backgroundColor: '#6c757d',
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        marginRight: '8px'
+                    }}
+                >
+                    Clear
+                </button>
+
+                <button
+                    onClick={generateCommunityInsight}
+                    style={{
+                        backgroundColor: '#28a745',
+                        color: 'white',
+                        border: 'none',
+                        padding: '6px 10px',
+                        width: '200px',
+                        height: '32px',
+                        fontSize: '12px',
+                        borderRadius: '4px',
+                        cursor: 'pointer'
+                    }}
+                >
+                    🧠 Analyze Area Risk
+                </button>
             </div>
 
             <div className="map-container">
-                <MapContainer center={[20.5937, 78.9629]} zoom={5} style={{ height: '100%', width: '100%' }}>
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                    {latestPosition && <AutoFocus position={latestPosition} />}
-
-                    {filteredReports.map((report, index) => (
-                        <Marker
-                            key={index}
-                            position={[report.latitude, report.longitude]}
-                            icon={icons[report.issue_type] || L.Icon.Default}
-                        >
-                            <Popup autoPan={true}>
-                                <div style={{ maxWidth: '250px' }}>
-                                    <strong>🧾 Issue:</strong> {report.issue_type.replace('_', ' ')}<br />
-                                    <strong>📝 Description:</strong> {report.description || 'N/A'}<br />
-                                    <strong>🕒 Reported:</strong> {formatDistanceToNow(new Date(report.created_at), { addSuffix: true })}<br />
-                                    {report.file && (
-                                        <>
-                                            <hr />
-                                            <strong>📎 Proof:</strong><br />
-                                            {/\.(jpeg|jpg|png|gif)$/i.test(report.file) ? (
-                                                <img
-                                                    src={`http://localhost:8000${report.file}`}
-                                                    alt="Proof"
-                                                    style={{ width: '100%', maxHeight: '150px', objectFit: 'contain' }}
-                                                />
-                                            ) : (
-                                                <a href={`http://localhost:8000${report.file}`} target="_blank" rel="noreferrer">
-                                                    View Attached File
-                                                </a>
-                                            )}
-                                        </>
-                                    )}
-                                </div>
-                            </Popup>
-                        </Marker>
-                    ))}
-
-                    {highRiskZones.map((coords, i) => (
-                        <Marker key={`hrz-${i}`} position={coords} icon={dangerIcon}>
-                            <Popup>
-                                <strong>🔥 Dengue Risk Zone</strong><br />
-                                Multiple stagnant water reports nearby.<br />
-                                Please avoid standing water & use mosquito nets.
-                            </Popup>
-                        </Marker>
-                    ))}
-                </MapContainer>
+                <MapView reports={filteredReports} highRiskZones={highRiskZones} onDelete={handleDelete} />
             </div>
 
-            {/* Legend */}
             <div className="legend">
-                <h5>🗺️ Legend:</h5>
-                <div className="legend-row">
-                    <div className="legend-item">
-                        <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" width="20" alt="Garbage" />
-                        <span>Garbage</span>
-                    </div>
-                    <div className="legend-item">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1123/1123525.png" width="20" alt="Water" />
-                        <span>Stagnant Water</span>
-                    </div>
-                    <div className="legend-item">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2284/2284985.png" width="20" alt="Toilet" />
-                        <span>Toilet</span>
-                    </div>
-                    <div className="legend-item">
-                        <img src="https://cdn-icons-png.flaticon.com/512/619/619034.png" width="20" alt="Danger" />
-                        <span className="text-danger">Dengue Risk</span>
-                    </div>
-                </div>
+                <h5>🧠 AI Severity Legend:</h5>
+                <div>🔴 High Risk</div>
+                <div>🟠 Medium Risk</div>
+                <div>🟢 Low Risk</div>
             </div>
+
+            {loadingInsight && <p style={{ textAlign: 'center', marginTop: '1rem' }}>⏳ Analyzing reports...</p>}
+
+            {communityInsight && (
+                <div className="ai-analysis" style={{
+                    background: '#f0f0f0',
+                    border: '1px dashed #444',
+                    borderRadius: '6px',
+                    padding: '12px',
+                    marginTop: '1.5rem',
+                    maxWidth: '800px',
+                    marginLeft: 'auto',
+                    marginRight: 'auto'
+                }}>
+                    <h4 className='dbot-title'>🧠 DoctorBot's Area Risk Insight:</h4>
+                    <p className='dbot-desc'>{communityInsight}</p>
+                </div>
+            )}
         </div>
     );
 };

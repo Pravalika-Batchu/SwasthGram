@@ -1,0 +1,134 @@
+.report-wrapper,
+.resolveList-container {
+    padding: 1rem;
+    margin-top: 60px;
+    background: var(--surface-overlay-6dp);
+    /* 12% overlay */
+    color: var(--dark-text-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.text-muted {
+    color: var(--secondary-btn-color);
+}
+
+body.dark .text-muted {
+    color: var(--dark-text-color);
+}
+
+body {
+    color: var(--light-text-color);
+}
+
+body.dark {
+    color: var(--dark-text-color);
+}
+
+.reports-title,
+.resolve-title {
+    text-align: center;
+    color: #d7b243;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.custom-table,
+.resolveList-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.custom-table th,
+.resolveList-table th {
+    background-color: #5776d9;
+    color: rgb(238, 236, 241);
+    border: 2px solid #2c2828;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.custom-table td,
+.resolveList-table td {
+    border: 2px solid #2c2828;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    color: var(--light-text-color);
+    /* Ensure readability */
+    background: var(--surface-overlay-1dp);
+    /* 5% overlay for cells */
+}
+
+body.dark .custom-table th,
+body.dark .custom-table td,
+body.dark .resolveList-table th,
+body.dark .resolveList-table td {
+    border-color: #d2bebe;
+    color: var(--dark-text-color);
+    background-color: var(--surface-overlay-6dp);
+}
+
+.custom-table thead,
+.resolveList-table thead {
+    background-color: var(--secondary-btn-color);
+    /* Green headers */
+    color: var(--dark-text-color);
+    font-weight: bold;
+}
+
+.custom-table img,
+.resolveList-table img {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+body.dark .custom-table img,
+body.dark .resolveList-table img {
+    border-color: #555;
+}
+
+.solve-btn {
+    background-color: #3d62dc;
+    color: var(--dark-text-color);
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.solve-btn:hover {
+    background-color: #953e98;
+}
+
+body.dark .solve-btn {
+    background-color: var(--secondary-btn-color);
+    color: var(--dark-text-color);
+}
+
+body.dark .solve-btn:hover {
+    background-color: #85c1cd;
+}
+
+.download-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+.download-buttons button {
+    background-color: var(--secondary-btn-color);
+    color: var(--dark-text-color);
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.download-buttons button:hover {
+    background-color: var(--secondary-btn-hover);
+}

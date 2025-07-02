@@ -1,6 +1,8 @@
 /* App.css */
 
 body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
   margin: 0;
   padding-right: 2px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

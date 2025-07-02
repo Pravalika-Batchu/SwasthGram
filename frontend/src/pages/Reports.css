@@ -1,0 +1,50 @@
+.report-wrapper {
+    padding: 1rem 1rem;
+    margin-top: 60px;
+    /* Fix for navbar overlap */
+    background-color: var(--bg-color);
+    color: var(--ight-text-color);
+
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.custom-table {
+    border-collapse: collapse !important;
+    width: 100%;
+    background-color: var(--bg-color);
+    color: var(--ight-text-color);
+}
+
+.custom-table th,
+.custom-table td {
+    border: 2px solid rgb(44, 40, 40) !important;
+    padding: 10px !important;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    color: #232426;
+}
+
+.custom-table thead {
+    background-color: var(--bg-color);
+    color: var(--ight-text-color);
+
+    /* Light green */
+    font-weight: bold;
+}
+
+.custom-table img {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+
+.download-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    gap: 1rem;
+    width: 500px;
+    height: 70px;
+}

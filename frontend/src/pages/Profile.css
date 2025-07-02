@@ -1,0 +1,100 @@
+.profile-page {
+    max-width: 800px;
+    margin: 70px auto 0;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    background: var(--surface-overlay-6dp);
+    /* 12% overlay for elevation */
+    color: var(--light-text-color);
+    border-radius: 10px;
+}
+
+body.dark .profile-page {
+    background: var(--surface-overlay-6dp);
+    color: var(--dark-text-color);
+}
+
+.report-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.report-item {
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    background: var(--surface-overlay-1dp);
+    /* 5% overlay */
+    color: var(--light-text-color);
+}
+
+.proof-link {
+    color: var(--secondary-btn-color);
+    text-decoration: underline;
+    font-style: italic;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.proof-link:hover {
+    color: var(--secondary-btn-hover);
+}
+
+body.dark .proof-link {
+    color: white;
+}
+
+body.dark .proof-link:hover {
+    color: #4ebce3;
+}
+
+body.dark .report-item {
+    background: var(--surface-overlay-6dp);
+    color: var(--dark-text-color);
+}
+
+.report-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.delete-btn {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #dc3545;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.delete-btn:hover {
+    transform: scale(1.2);
+}
+
+.badge-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.badge-list li {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    background: var(--surface-overlay-1dp);
+    color: var(--light-text-color);
+}
+
+body.dark .badge-list li {
+    background: var(--surface-overlay-6dp);
+    color: var(--dark-text-color);
+}

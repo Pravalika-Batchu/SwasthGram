@@ -1,13 +1,52 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  --nav-bg-start: #2E3192;
+  /* Sapphire Blue start */
+  --nav-bg-end: #1E2266;
+  /* Darker shade for gradient */
+  --nav-bg-start: #2E3192;
+  /* Sapphire Blue start */
+  --nav-bg-end: #1E2266;
+  /* Darker shade for gradient */
+  --light-bg-color: #f9f9f9;
+  /* Light mode background */
+  --dark-bg-color: #390d36;
+  /* Updated to your new purple */
+  --light-text-color: #1a1a1a;
+  /* Dark text for light mode */
+  --dark-text-color: #ffffff;
+  /* White text for dark mode */
+  --surface-overlay-1dp: rgba(255, 255, 255, 0.05);
+  /* 5% white overlay */
+  --surface-overlay-6dp: rgba(255, 255, 255, 0.12);
+  /* 12% white overlay */
+  --primary-btn-color: #d90429;
+  /* Red for Logout */
+  --primary-btn-hover: #b00020;
+  /* Darker red for hover */
+  --secondary-btn-color: #2E3192;
+  /* Green for headers/buttons */
+  --secondary-btn-hover: #1E2266;
+  /* Darker green for hover */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* General Reset and Base Styles */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+body.light {
+  background-color: var(--light-bg-color);
+  color: var(--light-text-color);
+}
+
+body.dark {
+  background: linear-gradient(180deg, #330e6e 0%, #2d0463 100%);
+  /* Shiny gradient with your new purple */
+  color: var(--dark-text-color);
 }

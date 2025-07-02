@@ -1,21 +1,9 @@
-body,
-html {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    /* ✅ prevent horizontal scroll */
-    max-width: 100vw;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 .page-content {
-    padding-top: 70px;
-    margin: 0 auto;
+    padding-top: 80px;
+    margin: 40px;
     max-width: 100%;
-    /* ✅ force responsive container */
     box-sizing: border-box;
 }
-
 
 .home-page {
     padding: 1rem;
@@ -26,7 +14,11 @@ html {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     text-align: center;
-    color: #2d6a4f;
+    color: var(--light-text-color);
+}
+
+body.dark .page-title {
+    color: var(--dark-text-color);
 }
 
 .filters {
@@ -42,41 +34,53 @@ html {
     font-size: 1rem;
     width: auto;
     min-width: 140px;
+    border: 1px solid #ccc;
+    background: var(--surface-overlay-1dp);
+}
+
+body.dark .filters select {
+    background: var(--surface-overlay-6dp);
+    border-color: #555;
+    color: var(--dark-text-color);
 }
 
 .map-container {
     height: 450px;
     width: 100%;
     max-width: 900px;
-    /* limit max width */
     margin: 0 auto 1.5rem;
-    /* center the map */
     border: 2px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
-    box-sizing: border-box;
+    background: var(--surface-overlay-6dp);
 }
 
-.legend {
+body.dark .map-container {
+    border-color: #555;
+}
+
+.dbot-title {
+    font-size: 1.2rem;
+    color: var(--secondary-btn-color);
     text-align: center;
     margin-top: 1rem;
 }
 
-.legend-row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+.dbot-desc {
+    font-size: 1rem;
+    color: var(--light-text-color);
+    text-align: center;
+    margin-top: 0.5rem;
 }
 
-.legend-item {
+.legend {
+    margin-left: 400px;
+    width: 300px;
+    height: 180px;
+    border: 5px solid #ccc;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 6px;
-}
-
-.leaflet-top.leaflet-left {
-    top: 80px !important;
-    /* Adjust depending on your navbar height */
-    left: 10px !important;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }

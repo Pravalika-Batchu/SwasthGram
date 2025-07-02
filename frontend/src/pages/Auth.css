@@ -2,28 +2,50 @@
     max-width: 400px;
     margin: 60px auto;
     padding: 24px;
-    background-color: white;
+    background: var(--surface-overlay-6dp);
+    /* 12% overlay for elevation */
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+body.dark .auth-form {
+    background: var(--surface-overlay-6dp);
+    border-color: #555;
+}
+
+body.dark .auth-form h3 {
+    color: var(--dark-text-color);
+}
+
 .auth-form h3 {
     text-align: center;
-    color: #2d6a4f;
+    color: var(--secondary-btn-color);
     margin-bottom: 20px;
 }
 
-.auth-form input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-}
-
+.auth-form input,
 .auth-form button {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
     font-size: 1rem;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    background: var(--surface-overlay-1dp);
+}
+
+body.dark .auth-form input {
+    background: var(--surface-overlay-6dp);
+    border-color: #555;
+    color: var(--dark-text-color);
+}
+
+.auth-form button {
+    background-color: var(--secondary-btn-color);
+    color: var(--dark-text-color);
+    border: none;
+}
+
+.auth-form button:hover {
+    background-color: var(--secondary-btn-hover);
 }
