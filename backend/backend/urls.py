@@ -6,7 +6,7 @@ from django.contrib import admin
 from django.shortcuts import redirect
 
 def home_redirect(request):
-    return redirect("https://swasthgram-frontend.netlify.app")
+    return redirect("https://swasthgram.netlify.app")
 
 
 
