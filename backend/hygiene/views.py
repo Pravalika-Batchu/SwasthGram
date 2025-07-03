@@ -159,9 +159,9 @@ def approve_resolution(request, report_id):
     if report.user != request.user:
         return Response({'error': 'Only the reporter can approve.'}, status=403)
 
-    # ✅ Check using either the flag OR the proof itself
-    if not report.resolution_submitted and not report.resolution_proof:
-        return Response({'error': 'No resolution has been submitted.'}, status=400)
+    if not (report.resolution_submitted or report.resolution_proof):
+        return Response({'error': 'No resolution has been submitted yet.'}, status=400)
+
 
     if report.is_resolved and report.is_approved:
         return Response({'message': 'Already approved'}, status=200)
