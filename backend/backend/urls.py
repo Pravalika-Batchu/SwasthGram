@@ -13,6 +13,6 @@ def home_redirect(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),  
-    path('', home_redirect),
     path('api/', include('hygiene.urls')),
+    path('', home_redirect),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
