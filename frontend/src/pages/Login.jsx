@@ -35,29 +35,31 @@ const Login = ({ setToken }) => {
     return (
         <div className="auth-form">
             <h3>🔐 Login</h3>
-            {message && <div className="alert alert-info">{message}</div>}
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                    <label>Username</label>
+            {message && <div className="login-message">{message}</div>}
+            <form onSubmit={handleSubmit} className="auth-form-fields">
+                <div className="input-group">
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
                         name="username"
-                        className="form-control"
+                        id="username"
+                        value={form.username}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                <div className="mb-3">
-                    <label>Password</label>
+                <div className="input-group">
+                    <label htmlFor="password">Password</label>
                     <input
                         type="password"
                         name="password"
-                        className="form-control"
+                        id="password"
+                        value={form.password}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                <button className="btn btn-primary">Login</button>
+                <button type="submit" className="submit-button">Login</button>
             </form>
         </div>
     );

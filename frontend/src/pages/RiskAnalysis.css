@@ -1,0 +1,176 @@
+/* ============= Main Container ============= */
+.home-page {
+    padding: 1.5rem;
+    font-family: 'Segoe UI', sans-serif;
+    max-width: 1100px;
+    margin: 60px auto 0;
+}
+
+/* ============= Page Title ============= */
+.page-title {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--light-text-color);
+}
+
+body.dark .page-title {
+    color: var(--dark-text-color);
+}
+
+/* ============= Filters Section ============= */
+.filters {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+/* Dropdowns */
+.filters select {
+    padding: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    max-width: 335px;
+    align-items: center;
+    padding: 10px;
+    height: 50px;
+    cursor: pointer;
+    color: #333;
+}
+
+body.dark .filters select {
+    background: #2c2c2c;
+    color: #eee;
+    border-color: #444;
+}
+
+/* Buttons */
+.filters button {
+    padding: 4px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    height: 40px;
+    transition: 0.2s ease-in-out;
+}
+
+/* Specific button colors */
+.apply-btn {
+    background-color: #007bff;
+    color: white;
+    max-width: 140px;
+}
+
+.clear-btn {
+    background-color: #6c757d;
+    color: white;
+    max-width: 140px;
+}
+
+.analyze-btn {
+    background-color: #28a745;
+    color: white;
+    max-width: 140px;
+    /* slightly wider for visibility */
+}
+
+.filters button:hover {
+    opacity: 0.7;
+}
+
+/* ============= Map Container ============= */
+.map-container {
+    height: 450px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface-overlay-1dp);
+}
+
+body.dark .map-container {
+    border-color: #555;
+    background: var(--surface-overlay-6dp);
+}
+
+/* ============= AI Community Insight ============= */
+.ai-analysis {
+    background: #f7f7f7;
+    border: 1px dashed #555;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 2rem auto;
+    max-width: 800px;
+}
+
+body.dark .ai-analysis {
+    background: var(--surface-overlay-6dp);
+    border-color: #aaa;
+    color: var(--dark-text-color);
+}
+
+.dbot-title {
+    font-size: 1.2rem;
+    text-align: center;
+    color: var(--secondary-btn-color);
+    margin-bottom: 0.5rem;
+}
+
+.dbot-desc {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--light-text-color);
+}
+
+body.dark .dbot-desc {
+    color: var(--dark-text-color);
+}
+
+/* ============= Legend Section ============= */
+.legend {
+    margin: 1rem auto;
+    padding: 1rem;
+    width: fit-content;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background: var(--surface-overlay-6dp);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-weight: 400;
+}
+
+body.dark .legend {
+    border-color: #555;
+    background: var(--surface-overlay-6dp);
+    color: var(--dark-text-color);
+}
+
+/* ============= Responsive ============= */
+@media (max-width: 600px) {
+    .filters {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .map-container {
+        height: 350px;
+    }
+
+    .legend {
+        width: 100%;
+        padding: 0.8rem;
+    }
+}

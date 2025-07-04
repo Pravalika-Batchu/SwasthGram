@@ -15,7 +15,7 @@
   /* Dark text for light mode */
   --dark-text-color: #ffffff;
   /* White text for dark mode */
-  --surface-overlay-1dp: rgba(255, 255, 255, 0.05);
+  --surface-overlay-1dp: #1c1c1c;
   /* 5% white overlay */
   --surface-overlay-6dp: rgba(255, 255, 255, 0.12);
   /* 12% white overlay */
@@ -46,7 +46,7 @@ body.light {
 }
 
 body.dark {
-  background: linear-gradient(180deg, #330e6e 0%, #2d0463 100%);
+  background: linear-gradient(180deg, #1c1c1c 0%, #343236 100%);
   /* Shiny gradient with your new purple */
   color: var(--dark-text-color);
 }

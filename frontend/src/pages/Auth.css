@@ -1,51 +1,89 @@
 .auth-form {
     max-width: 400px;
-    margin: 60px auto;
-    padding: 24px;
-    background: var(--surface-overlay-6dp);
-    /* 12% overlay for elevation */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 80px auto;
+    padding: 30px 25px;
+    background: #fdfdfd;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 body.dark .auth-form {
-    background: var(--surface-overlay-6dp);
+    background: #2f2f41;
     border-color: #555;
-}
-
-body.dark .auth-form h3 {
-    color: var(--dark-text-color);
 }
 
 .auth-form h3 {
     text-align: center;
     color: var(--secondary-btn-color);
-    margin-bottom: 20px;
 }
 
-.auth-form input,
-.auth-form button {
-    width: 100%;
+body.dark .auth-form h3 {
+    color: #fff;
+}
+
+.auth-form-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-weight: 600;
+    color: var(--light-text-color);
+}
+
+body.dark .input-group label {
+    color: #ccc;
+}
+
+.input-group input {
     padding: 10px;
     font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 6px;
     border: 1px solid #ccc;
-    background: var(--surface-overlay-1dp);
+    background-color: #f0f0f0;
+    color: #333;
 }
 
-body.dark .auth-form input {
-    background: var(--surface-overlay-6dp);
+body.dark .input-group input {
+    background-color: #3b3b5a;
+    color: #fff;
     border-color: #555;
-    color: var(--dark-text-color);
 }
 
-.auth-form button {
-    background-color: var(--secondary-btn-color);
-    color: var(--dark-text-color);
+.submit-button {
+    padding: 12px;
     border: none;
+    border-radius: 6px;
+    background-color: var(--secondary-btn-color);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.auth-form button:hover {
+.submit-button:hover {
     background-color: var(--secondary-btn-hover);
+}
+
+.login-message {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 8px;
+    color: #155724;
+}
+
+body.dark .login-message {
+    color: #28a745;
 }

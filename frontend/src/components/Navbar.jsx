@@ -21,6 +21,7 @@ const Navbar = ({ token, setToken }) => {
                 <Link to="/">Home</Link>
                 {token ? (
                     <>
+                        <Link to="/map">Map</Link>
                         <Link to="/report">Report</Link>
                         <Link to="/resolve" >Resolve</Link>
                         <Link to="/leaderboard">Leaderboard</Link>

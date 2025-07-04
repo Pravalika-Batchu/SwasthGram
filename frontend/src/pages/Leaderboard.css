@@ -1,6 +1,6 @@
 .leaderboard-container {
     padding: 2rem;
-    margin-top: 40px;
+    margin-top: 100px;
     margin-left: 20px;
     margin-right: 20px;
     background: var(--surface-overlay-6dp);
@@ -15,6 +15,7 @@
 body.dark .leaderboard-container {
     background: var(--surface-overlay-6dp);
     color: var(--dark-text-color);
+
 }
 
 .leaderboard-table {
@@ -51,6 +52,11 @@ body.dark .leaderboard-table td {
 body.dark .leaderboard-table th,
 body.dark .leaderboard-table td {
     border-color: #d2bebe;
+}
+
+body.dark .leaderboard-table th {
+    background-color: var(--secondary-btn-color);
+    color: var(--dark-text-color);
 }
 
 .leaderboard-table thead {

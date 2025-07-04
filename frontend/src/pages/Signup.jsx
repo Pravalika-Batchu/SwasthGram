@@ -35,43 +35,43 @@ const Signup = () => {
     return (
         <div className="auth-form">
             <h3>👤 Create Account</h3>
-            {message && <div className="alert alert-info">{message}</div>}
+            {message && <div className="login-message">{message}</div>}
 
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3">
+            <form onSubmit={handleSubmit} className="auth-form-fields">
+                <div className="input-group">
                     <label>Username</label>
                     <input
                         type="text"
                         name="username"
-                        className="form-control"
+                        value={form.username}
                         onChange={handleChange}
                         required
                     />
                 </div>
 
-                <div className="mb-3">
+                <div className="input-group">
                     <label>Password</label>
                     <input
                         type="password"
                         name="password"
-                        className="form-control"
+                        value={form.password}
                         onChange={handleChange}
                         required
                     />
                 </div>
 
-                <div className="mb-3">
+                <div className="input-group">
                     <label>Confirm Password</label>
                     <input
                         type="password"
                         name="confirmPassword"
-                        className="form-control"
+                        value={form.confirmPassword}
                         onChange={handleChange}
                         required
                     />
                 </div>
 
-                <button className="btn btn-success">Signup</button>
+                <button type="submit" className="submit-button">Signup</button>
             </form>
         </div>
     );

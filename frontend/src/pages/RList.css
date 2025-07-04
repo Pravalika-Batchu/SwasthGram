@@ -1,85 +1,82 @@
+/* Container for report & resolve list */
 .report-wrapper,
 .resolveList-container {
     padding: 1rem;
     margin-top: 60px;
-    background: var(--surface-overlay-6dp);
-    /* 12% overlay */
-    color: var(--dark-text-color);
+    background: #ffffff;
+    /* Light mode base background */
+    color: #222;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.text-muted {
-    color: var(--secondary-btn-color);
-}
-
-body.dark .text-muted {
+body.dark .report-wrapper,
+body.dark .resolveList-container {
+    background: var(--surface-overlay-6dp);
     color: var(--dark-text-color);
 }
 
-body {
-    color: var(--light-text-color);
-}
-
-body.dark {
-    color: var(--dark-text-color);
-}
-
+/* Section Titles */
 .reports-title,
 .resolve-title {
     text-align: center;
-    color: #d7b243;
+    color: #2E3192;
     margin-bottom: 1rem;
     font-size: 1.5rem;
 }
 
+body.dark .reports-title,
+body.dark .resolve-title {
+    color: #d7b243;
+}
+
+/* Table Styling */
 .custom-table,
 .resolveList-table {
     border-collapse: collapse;
     width: 100%;
-}
-
-.custom-table th,
-.resolveList-table th {
-    background-color: #5776d9;
-    color: rgb(238, 236, 241);
-    border: 2px solid #2c2828;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
     font-size: 14px;
-}
-
-.custom-table td,
-.resolveList-table td {
-    border: 2px solid #2c2828;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 14px;
-    color: var(--light-text-color);
-    /* Ensure readability */
-    background: var(--surface-overlay-1dp);
-    /* 5% overlay for cells */
-}
-
-body.dark .custom-table th,
-body.dark .custom-table td,
-body.dark .resolveList-table th,
-body.dark .resolveList-table td {
-    border-color: #d2bebe;
-    color: var(--dark-text-color);
-    background-color: var(--surface-overlay-6dp);
 }
 
 .custom-table thead,
 .resolveList-table thead {
     background-color: var(--secondary-btn-color);
-    /* Green headers */
-    color: var(--dark-text-color);
+    color: white;
     font-weight: bold;
 }
 
+body.dark .custom-table thead,
+body.dark .resolveList-table thead {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+.custom-table th,
+.resolveList-table th,
+.custom-table td,
+.resolveList-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.custom-table td,
+.resolveList-table td {
+    background: #f9f9f9;
+    color: #222;
+}
+
+body.dark .custom-table th,
+body.dark .resolveList-table th,
+body.dark .custom-table td,
+body.dark .resolveList-table td {
+    background: var(--surface-overlay-6dp);
+    color: var(--dark-text-color);
+    border-color: #d2bebe;
+}
+
+/* Table Images */
 .custom-table img,
 .resolveList-table img {
     border: 1px solid #aaa;
@@ -91,9 +88,10 @@ body.dark .resolveList-table img {
     border-color: #555;
 }
 
+/* Solve Button */
 .solve-btn {
     background-color: #3d62dc;
-    color: var(--dark-text-color);
+    color: white;
     padding: 10px;
     border: none;
     border-radius: 6px;
@@ -113,6 +111,7 @@ body.dark .solve-btn:hover {
     background-color: #85c1cd;
 }
 
+/* Download Button Styling */
 .download-buttons {
     display: flex;
     justify-content: flex-end;
@@ -122,7 +121,7 @@ body.dark .solve-btn:hover {
 
 .download-buttons button {
     background-color: var(--secondary-btn-color);
-    color: var(--dark-text-color);
+    color: #fff;
     padding: 10px;
     border: none;
     border-radius: 6px;

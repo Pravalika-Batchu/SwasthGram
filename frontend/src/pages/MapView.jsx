@@ -69,7 +69,8 @@ const MapView = ({ reports, highRiskZones }) => {
     const latestPosition = userLocation || fallbackCenter;
 
     return (
-        <MapContainer center={latestPosition} zoom={5} style={{ height: '100%', width: '100%' }}>
+        <MapContainer center={latestPosition} zoom={5} style={{ height: '450px', width: '100%' }}>
+
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             <AutoFocus position={latestPosition} />
 

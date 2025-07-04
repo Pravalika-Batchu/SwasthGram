@@ -1,184 +1,86 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../axiosConfig';
-import MapView from './MapView';
-import { getGeminiText } from '../utils/openRouterHelper';
+// src/pages/Home.jsx
+import React from 'react';
 import './Home.css';
 
 const Home = () => {
-    const [reports, setReports] = useState([]);
-    const [selectedFilter, setSelectedFilter] = useState('');
-    const [selectedTimeFilter, setSelectedTimeFilter] = useState('all');
-    const [filter, setFilter] = useState('');
-    const [timeFilter, setTimeFilter] = useState('all');
-    const [highRiskZones, setHighRiskZones] = useState([]);
-    const [communityInsight, setCommunityInsight] = useState('');
-    const [loadingInsight, setLoadingInsight] = useState(false);
-
-    useEffect(() => {
-        const token = localStorage.getItem('access');
-
-        axios.get('http://localhost:8000/api/reports/', {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then(res => setReports(res.data))
-            .catch(err => console.error('Failed to load reports:', err));
-
-        axios.get('http://localhost:8000/api/highrisk-zones/')
-            .then(res => setHighRiskZones(res.data))
-            .catch(err => console.error('Failed to load risk zones:', err));
-    }, []);
-
-    const filteredReports = reports.filter(report => {
-        const issueMatch = !filter || report.issue_type === filter;
-        const days = timeFilter === 'all' ? Infinity : parseInt(timeFilter);
-        const reportAgeInDays = (new Date() - new Date(report.created_at)) / (1000 * 60 * 60 * 24);
-        return issueMatch && reportAgeInDays <= days;
-    });
-
-    const handleDelete = (id) => {
-        const token = localStorage.getItem('access');
-        if (window.confirm('Are you sure you want to delete this report?')) {
-            axios.delete(`http://localhost:8000/api/reports/${id}/delete/`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-                .then(() => {
-                    setReports(prev => prev.filter(r => r.id !== id));
-                    alert('✅ Report deleted!');
-                })
-                .catch(err => {
-                    console.error('Delete error:', err);
-                    alert('❌ Failed to delete the report.');
-                });
-        }
-    };
-
-    const generateCommunityInsight = async () => {
-        if (filteredReports.length === 0) {
-            alert('No reports to analyze!');
-            return;
-        }
-
-        setLoadingInsight(true);
-        const summaryData = filteredReports.map(r => `- ${r.issue_type.replace('_', ' ')} at (${r.latitude}, ${r.longitude})`).join('\n');
-
-        const aiPrompt = `
-You're a public health AI. Based on hygiene issue reports below, give a short 3-line summary of the potential risk in this area. Mention likely diseases and urgency.
-
-Reports:
-${summaryData}
-        `.trim();
-
-        const result = await getGeminiText(aiPrompt);
-        setCommunityInsight(result);
-        setLoadingInsight(false);
-    };
-
     return (
-        <div className="home-page">
-            <h2 className="page-title">🧼 SwasthGram Hygiene Map</h2>
+        <div className="home-container">
 
-            <div className="filters">
-                <select onChange={e => setSelectedFilter(e.target.value)} value={selectedFilter}>
-                    <option value="">All Issues</option>
-                    <option value="garbage">Garbage</option>
-                    <option value="stagnant_water">Stagnant Water</option>
-                    <option value="toilet">Toilet</option>
-                </select>
-
-                <select onChange={e => setSelectedTimeFilter(e.target.value)} value={selectedTimeFilter}>
-                    <option value="all">All Time</option>
-                    <option value="7">Last 7 Days</option>
-                    <option value="30">Last 30 Days</option>
-                </select>
-
-                <button
-                    onClick={() => {
-                        setFilter(selectedFilter);
-                        setTimeFilter(selectedTimeFilter);
-                    }}
-                    style={{
-                        width: '80px',
-                        height: '32px',
-                        fontSize: '12px',
-                        backgroundColor: '#007bff',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        marginRight: '8px'
-                    }}
-                >
-                    Apply
-                </button>
-
-                <button
-                    onClick={() => {
-                        setSelectedFilter('');
-                        setSelectedTimeFilter('all');
-                        setFilter('');
-                        setTimeFilter('all');
-                    }}
-                    style={{
-                        width: '80px',
-                        height: '32px',
-                        fontSize: '12px',
-                        backgroundColor: '#6c757d',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        marginRight: '8px'
-                    }}
-                >
-                    Clear
-                </button>
-
-                <button
-                    onClick={generateCommunityInsight}
-                    style={{
-                        backgroundColor: '#28a745',
-                        color: 'white',
-                        border: 'none',
-                        padding: '6px 10px',
-                        width: '200px',
-                        height: '32px',
-                        fontSize: '12px',
-                        borderRadius: '4px',
-                        cursor: 'pointer'
-                    }}
-                >
-                    🧠 Analyze Area Risk
-                </button>
-            </div>
-
-            <div className="map-container">
-                <MapView reports={filteredReports} highRiskZones={highRiskZones} onDelete={handleDelete} />
-            </div>
-
-            <div className="legend">
-                <h5>🧠 AI Severity Legend:</h5>
-                <div>🔴 High Risk</div>
-                <div>🟠 Medium Risk</div>
-                <div>🟢 Low Risk</div>
-            </div>
-
-            {loadingInsight && <p style={{ textAlign: 'center', marginTop: '1rem' }}>⏳ Analyzing reports...</p>}
-
-            {communityInsight && (
-                <div className="ai-analysis" style={{
-                    background: '#f0f0f0',
-                    border: '1px dashed #444',
-                    borderRadius: '6px',
-                    padding: '12px',
-                    marginTop: '1.5rem',
-                    maxWidth: '800px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                }}>
-                    <h4 className='dbot-title'>🧠 DoctorBot's Area Risk Insight:</h4>
-                    <p className='dbot-desc'>{communityInsight}</p>
+            {/* Hero Section */}
+            <section className="hero">
+                <h1>Welcome to <span className="brand">SwasthGram</span></h1>
+                <p>Your AI-powered hygiene guardian for smarter and cleaner communities.</p>
+                <div className="hero-buttons">
+                    <a href="/report" className="btn-primary">📷 Report Issue</a>
+                    <a href="/map" className="btn-secondary">🗺️ Explore Risk Zones</a>
                 </div>
-            )}
+            </section>
+
+            {/* About Section */}
+            <section className="about">
+                <h2> About SwasthGram</h2>
+                <p>
+                    SwasthGram is a public hygiene monitoring platform that empowers citizens to report
+                    cleanliness issues using AI, geolocation, and community support. By harnessing collective action,
+                    we aim to build a healthier and more aware society.
+                </p>
+            </section>
+
+            {/* Features Section */}
+            <section className="features">
+                <div className="features-section">
+                    <h2 className="section-title">✨ Key Features</h2>
+
+                    <div className="features-grid">
+                        <div className="feature-card">
+                            <h3>🧠 AI Detection</h3>
+                            <p>Upload an image and let our AI model detect hygiene issues instantly.</p>
+                        </div>
+
+                        <div className="feature-card">
+                            <h3>📝 Smart Reporting</h3>
+                            <p>Report issues in seconds with AI-powered suggestions, geolocation & photo uploads — all in one page.</p>
+                        </div>
+
+                        <div className="feature-card">
+                            <h3>🤖 Ask AI Bot</h3>
+                            <p>Confused about a hygiene issue or health tip? Ask our integrated AI bot and get instant, intelligent suggestions!</p>
+                        </div>
+
+                        <div className="feature-card">
+                            <h3>🗺️ Map-Based Risk Zones</h3>
+                            <p>Track stagnant water clusters and high-risk areas based on seasonal and crowd-sourced data.</p>
+                        </div>
+
+                        <div className="feature-card">
+                            <h3>🧑‍🤝‍🧑 Community Resolutions</h3>
+                            <p>Other citizens can resolve your complaint and upload proof — verified by you!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            {/* How It Works */}
+            <section className="how-it-works">
+                <h2>🛠️ How It Works</h2>
+                <ol>
+                    <li>📸 Upload a photo of the hygiene issue</li>
+                    <li>🤖 AI analyzes and detects the problem</li>
+                    <li>📍 Pin the location</li>
+                    <li>✅ Submit your report</li>
+                    <li>🌟 Community helps resolve it!</li>
+                </ol>
+            </section>
+
+            {/* Footer */}
+            <footer className="footer">
+                <p>Made with ❤️ by Team SwasthGram | © 2025</p>
+                <p>
+                    <a href="https://github.com/Pravalika-Batchu/SwasthGram" target="_blank" rel="noreferrer">GitHub Repo</a>
+                </p>
+            </footer>
+
         </div>
     );
 };
