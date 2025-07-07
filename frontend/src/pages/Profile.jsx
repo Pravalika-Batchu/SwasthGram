@@ -8,7 +8,6 @@ const Profile = () => {
     const [message, setMessage] = useState('');
     const [points, setPoints] = useState(0);
     const [badges, setBadges] = useState([]);
-    const [approvingId, setApprovingId] = useState(null);
     useEffect(() => {
         fetchReports();
         fetchProfileData();
@@ -46,9 +45,7 @@ const Profile = () => {
 
     const approveResolution = (id) => {
         const token = localStorage.getItem('access');
-
-        // ✅ RETURN the axios Promise
-        return axios.post(`http://localhost:8000/api/reports/${id}/approve/`, {}, {
+        axios.post(`http://localhost:8000/api/reports/${id}/approve/`, {}, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(() => {
@@ -60,7 +57,6 @@ const Profile = () => {
                 alert("❌ Failed to approve resolution.");
             });
     };
-
 
     const handleDelete = (id) => {
         const token = localStorage.getItem('access');
@@ -122,16 +118,7 @@ const Profile = () => {
                                     <strong>📝 Resolution Submitted</strong><br />
                                     <a href={`http://localhost:8000${report.resolution_proof}`} target="_blank" rel="noreferrer">View Resolution</a>
                                     <p className="mb-1">{report.resolution_description || 'No description provided.'}</p>
-                                    <button
-                                        className="btn btn-success btn-sm"
-                                        disabled={approvingId === report.id}
-                                        onClick={() => {
-                                            setApprovingId(report.id);
-                                            approveResolution(report.id).finally(() => setApprovingId(null));
-                                        }}
-                                    >
-                                        ✅ Approve
-                                    </button>
+                                    <button className="btn btn-success btn-sm" onClick={() => approveResolution(report.id)}>✅ Approve</button>
                                 </div>
                             )}
 
