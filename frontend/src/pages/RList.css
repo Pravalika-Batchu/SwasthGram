@@ -63,6 +63,10 @@ td[data-severity='low'] {
     cursor: pointer;
 }
 
+body.dark .load-text {
+    color: #f0f0f0
+}
+
 .solve-btn:hover {
     background-color: #953e98;
 }
