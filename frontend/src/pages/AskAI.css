@@ -3,11 +3,11 @@
     max-width: 700px;
     margin: 70px auto 0;
     font-family: 'Segoe UI', sans-serif;
-    background-color: inherit;
 }
 
+/* Chat Box */
 .chat-box {
-    background-color: var(--light-bg-color);
+    background-color: #f1f0f0;
     border: 2px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
@@ -17,23 +17,23 @@
     display: flex;
     flex-direction: column;
     background: var(--surface-overlay-6dp);
-    /* 12% overlay for elevation */
 }
 
 body.dark .chat-box {
-    background: var(--surface-overlay-6dp);
+    background: #232334;
+    /* ✅ Neutral dark shade */
     border-color: #555;
 }
 
+/* Messages */
 .chat-message {
-    max-width: 70%;
+    max-width: 75%;
     padding: 10px 15px;
     border-radius: 15px;
     margin-bottom: 12px;
     word-wrap: break-word;
     line-height: 1.4;
-    background: var(--surface-overlay-1dp);
-    /* 5% overlay for messages */
+    background: #f1f0f0;
 }
 
 .chat-message.user {
@@ -57,9 +57,11 @@ body.dark .chat-message.user {
 }
 
 body.dark .chat-message.assistant {
-    background: var(--surface-overlay-1dp);
+    background: #2d2d40;
+    color: #eee;
 }
 
+/* Input Section */
 .chat-input {
     display: flex;
     gap: 0.5rem;
@@ -72,31 +74,35 @@ body.dark .chat-message.assistant {
     font-size: 14px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    background: var(--surface-overlay-1dp);
+    background: var(--light-bg-color)
 }
 
 body.dark .chat-input textarea {
-    background: var(--surface-overlay-6dp);
+    background: #2c2c3c;
     border-color: #555;
     color: var(--dark-text-color);
-}
-
-body.dark .chat-input textarea::placeholder {
-    color: #aaa;
 }
 
 .chat-input textarea::placeholder {
     color: #888;
 }
 
+body.dark .chat-input textarea::placeholder {
+    color: #aaa;
+}
+
+/* Send Button - Smaller width */
 .chat-input button {
-    padding: 10px;
+    padding: 8px 14px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    width: 100px;
     background-color: var(--secondary-btn-color);
-    color: var(--dark-text-color);
+    color: #fff;
+    white-space: nowrap;
+    font-size: 14px;
+    min-width: 90px;
+    max-width: 120px;
 }
 
 .chat-input button:hover {

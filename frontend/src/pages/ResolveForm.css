@@ -1,0 +1,45 @@
+/* Dark Theme Styles for ResolveForm */
+
+/* Add this in ResolveForm.css or global CSS */
+.resolve-form-page {
+    min-height: 100vh;
+    padding-top: 100px;
+    padding-bottom: 80px;
+    /* 👈 gives breathing space at bottom */
+    background-color: var(--light-bg-color);
+    overflow-y: auto;
+}
+
+body.dark .resolve-form-page {
+    background-color: var(--dark-bg-color);
+}
+
+
+body.dark .card {
+    background-color: var(--surface-overlay-6dp);
+    color: var(--dark-text-color);
+}
+
+
+
+
+body.dark .form-control {
+    background-color: #2c2c2c;
+    color: #eee;
+    border: 1px solid #555;
+}
+
+body.dark .form-control::placeholder {
+    color: #bbb;
+}
+
+body.dark .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+body.dark .btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

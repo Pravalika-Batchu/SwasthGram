@@ -1,100 +1,65 @@
 /* Container for report & resolve list */
 .report-wrapper,
 .resolveList-container {
-    padding: 1rem;
-    margin-top: 60px;
+    padding: 4rem;
     background: #ffffff;
-    /* Light mode base background */
-    color: #222;
-    border-radius: 10px;
+    border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 body.dark .report-wrapper,
 body.dark .resolveList-container {
-    background: var(--surface-overlay-6dp);
-    color: var(--dark-text-color);
+    background: #202030;
+    color: #f0f0f0;
 }
 
 /* Section Titles */
 .reports-title,
 .resolve-title {
-    text-align: center;
     color: #2E3192;
+    font-weight: 600;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
 }
 
 body.dark .reports-title,
 body.dark .resolve-title {
-    color: #d7b243;
+    color: #f1c40f;
 }
 
 /* Table Styling */
-.custom-table,
-.resolveList-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 14px;
-}
-
-.custom-table thead,
-.resolveList-table thead {
-    background-color: var(--secondary-btn-color);
-    color: white;
-    font-weight: bold;
-}
-
-body.dark .custom-table thead,
-body.dark .resolveList-table thead {
-    background-color: #3a3a3a;
-    color: #fff;
-}
-
-.custom-table th,
-.resolveList-table th,
-.custom-table td,
-.resolveList-table td {
-    border: 1px solid #ccc;
-    padding: 10px;
+.table th,
+.table td {
     text-align: center;
     vertical-align: middle;
 }
 
-.custom-table td,
-.resolveList-table td {
-    background: #f9f9f9;
-    color: #222;
+body.dark .table thead {
+    background-color: #343a40 !important;
+    color: #f0f0f0;
 }
 
-body.dark .custom-table th,
-body.dark .resolveList-table th,
-body.dark .custom-table td,
-body.dark .resolveList-table td {
-    background: var(--surface-overlay-6dp);
-    color: var(--dark-text-color);
-    border-color: #d2bebe;
+/* Severity Styles */
+td[data-severity='high'] {
+    color: red;
+    font-weight: bold;
 }
 
-/* Table Images */
-.custom-table img,
-.resolveList-table img {
-    border: 1px solid #aaa;
-    border-radius: 4px;
+td[data-severity='medium'] {
+    color: orange;
 }
 
-body.dark .custom-table img,
-body.dark .resolveList-table img {
-    border-color: #555;
+td[data-severity='low'] {
+    color: green;
 }
 
 /* Solve Button */
 .solve-btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
     background-color: #3d62dc;
     color: white;
-    padding: 10px;
     border: none;
-    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -103,31 +68,18 @@ body.dark .resolveList-table img {
 }
 
 body.dark .solve-btn {
-    background-color: var(--secondary-btn-color);
-    color: var(--dark-text-color);
+    background-color: #4d6ec7;
 }
 
-body.dark .solve-btn:hover {
-    background-color: #85c1cd;
-}
-
-/* Download Button Styling */
+/* Download Buttons */
 .download-buttons {
     display: flex;
-    justify-content: flex-end;
-    margin-top: 1rem;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
 .download-buttons button {
-    background-color: var(--secondary-btn-color);
-    color: #fff;
-    padding: 10px;
-    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
     border-radius: 6px;
-    cursor: pointer;
-}
-
-.download-buttons button:hover {
-    background-color: var(--secondary-btn-hover);
 }

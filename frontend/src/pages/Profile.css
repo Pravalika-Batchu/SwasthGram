@@ -1,132 +1,134 @@
 .profile-page {
-    max-width: 800px;
-    margin: 70px auto 0;
+    margin-top: 80px;
     padding: 2rem;
-    font-family: 'Segoe UI', sans-serif;
-    background: #ffffff;
-    /* Light background */
-    color: #222;
-    /* Dark text for light mode */
     border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    background: #ffffff;
+    color: #222;
 }
 
 body.dark .profile-page {
-    background: var(--surface-overlay-6dp);
-    color: var(--dark-text-color);
+    background: #1f1f2e;
+    color: #f0f0f0;
 }
 
-.report-list {
-    list-style-type: none;
-    padding: 0;
-}
-
+/* ========== Report Item ========== */
 .report-item {
-    padding: 1.2rem;
-    margin-bottom: 1rem;
+    background-color: #f9f9f9;
     border-radius: 10px;
-    background: #f0f0f0;
-    /* slightly gray for light mode */
-    color: #1a1a1a;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
 }
 
 body.dark .report-item {
-    background: var(--surface-overlay-6dp);
-    color: var(--dark-text-color);
+    background-color: #2a2a3a;
+    color: #f5f5f5;
+    border: 1px solid #444;
 }
 
-.report-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.5rem;
-}
-
+/* ========== Delete Button ========== */
 .delete-btn {
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    padding: 0;
+    color: #dc3545;
     background: none;
     border: none;
-    font-size: 18px;
-    color: #dc3545;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .delete-btn:hover {
     transform: scale(1.1);
+    background: rgba(220, 53, 69, 0.15);
+    border-radius: 50%;
 }
 
+/* ========== Proof Link ========== */
 .proof-link {
-    color: var(--secondary-btn-color);
+    color: #007bff;
     text-decoration: underline;
-    font-style: italic;
 }
 
 body.dark .proof-link {
-    color: #ffffff;
+    color: #67d1ff;
 }
 
+/* ========== Resolution Status Sections ========== */
+.alert,
 .resolution-status,
 .resolution-pending,
 .resolution-approved,
 .resolution-not-submitted {
-    margin-top: 10px;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: 500;
-    background: #eef1f5;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background-color: #eef1f5;
     color: #333;
+    margin-top: 10px;
+    border: 1px solid #ddd;
 }
 
+body.dark .alert,
 body.dark .resolution-status,
 body.dark .resolution-pending,
 body.dark .resolution-approved,
 body.dark .resolution-not-submitted {
-    background: var(--surface-overlay-1dp);
-    color: var(--dark-text-color);
+    background-color: #29293d;
+    color: #eeeeee;
+    border-color: #555;
 }
 
+/* ========== Approve Button ========== */
 .approve-btn {
     margin-top: 10px;
     padding: 8px 14px;
-    background: var(--secondary-btn-color);
+    background: #007bff;
     color: #fff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
     transition: background 0.3s ease;
 }
 
 .approve-btn:hover {
-    background: var(--secondary-btn-hover);
+    background-color: #0056b3;
 }
 
-.badge-list {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 1rem;
+body.dark .approve-btn {
+    background-color: #007bff;
+    color: #fff;
 }
 
-.badge-list li {
+body.dark .approve-btn:hover {
+    background-color: #0056b3;
+}
+
+/* ========== Badges (No list style) ========== */
+.badge-section {
+    margin-top: 2rem;
+}
+
+.custom-badge {
+    background-color: #e2e3ff;
+    color: #2e3192;
     padding: 8px 14px;
-    background: #f3f3f3;
-    border-radius: 8px;
     font-size: 14px;
-    color: #333;
+    border-radius: 20px;
     font-weight: 500;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
 }
 
-body.dark .badge-list li {
-    background: var(--surface-overlay-6dp);
-    color: var(--dark-text-color);
+body.dark .custom-badge {
+    background-color: #3b3b58;
+    color: #f8f8f8;
+    border: 1px solid #666;
 }

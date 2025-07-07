@@ -1,8 +1,7 @@
-// src/pages/ResolveForm.jsx
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../axiosConfig';
-// import './ResolveForm.css';
+import './ResolveForm.css'; // Optional for dark styles
 
 const ResolveForm = () => {
     const { id: reportId } = useParams();
@@ -40,20 +39,38 @@ const ResolveForm = () => {
     };
 
     return (
-        <div className="resolve-form">
-            <h2>🧩 Solve Hygiene Issue</h2>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    📎 Upload Proof
-                    <input type="file" onChange={(e) => setFile(e.target.files[0])} required />
-                </label>
-                <label>
-                    📝 Description (optional)
-                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-                </label>
-                <button type="submit">Submit ✅</button>
-                {error && <p className="error">{error}</p>}
-            </form>
+        <div className="container mt-5 pt-4">
+            <div className="card shadow-sm p-4 mx-auto" style={{ maxWidth: '600px' }}>
+                <h2 className="text-primary mb-4 text-center">🧩 Solve Hygiene Issue</h2>
+                <form onSubmit={handleSubmit} className="needs-validation">
+                    <div className="mb-3">
+                        <label className="form-label fw-semibold">📎 Upload Proof</label>
+                        <input
+                            type="file"
+                            className="form-control"
+                            onChange={(e) => setFile(e.target.files[0])}
+                            required
+                        />
+                    </div>
+
+                    <div className="mb-3">
+                        <label className="form-label fw-semibold">📝 Description (optional)</label>
+                        <textarea
+                            className="form-control"
+                            rows="4"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Add a short note about how you resolved the issue..."
+                        />
+                    </div>
+
+                    <div className="d-flex justify-content-center">
+                        <button type="submit" className="btn btn-success px-4 py-2">Submit ✅</button>
+                    </div>
+
+                    {error && <div className="alert alert-danger mt-3">{error}</div>}
+                </form>
+            </div>
         </div>
     );
 };

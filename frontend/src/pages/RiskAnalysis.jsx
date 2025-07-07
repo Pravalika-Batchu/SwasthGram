@@ -95,13 +95,17 @@ ${summaryData}
                     setFilter(selectedFilter);
                     setTimeFilter(selectedTimeFilter);
                 }}>Apply</button>
+
                 <button className="clear-btn" onClick={() => {
                     setSelectedFilter('');
                     setSelectedTimeFilter('all');
                     setFilter('');
                     setTimeFilter('all');
                 }}>Clear</button>
-                <button className="analyze-btn" onClick={generateCommunityInsight}>🧠 Analyze Area Risk</button>
+                <br />
+                <button className="analyze-btn" onClick={generateCommunityInsight}>
+                    🧠 Analyze Area Risk
+                </button>
             </div>
 
             <div className="map-container">
@@ -110,24 +114,14 @@ ${summaryData}
 
             <div className="legend">
                 <h4>🧠 AI Severity Legend:</h4>
-                <br />
                 <div>🔴 High Risk</div>
                 <div>🟠 Medium Risk</div>
             </div>
 
-            {loadingInsight && <p style={{ textAlign: 'center', marginTop: '1rem' }}>⏳ Analyzing reports...</p>}
+            {loadingInsight && <p className="loading-text">⏳ Analyzing reports...</p>}
 
             {communityInsight && (
-                <div className="ai-analysis" style={{
-                    background: '#f0f0f0',
-                    border: '1px dashed #444',
-                    borderRadius: '6px',
-                    padding: '12px',
-                    marginTop: '1.5rem',
-                    maxWidth: '800px',
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                }}>
+                <div className="ai-analysis">
                     <h4 className='dbot-title'>🧠 DoctorBot's Area Risk Insight:</h4>
                     <p className='dbot-desc'>{communityInsight}</p>
                 </div>

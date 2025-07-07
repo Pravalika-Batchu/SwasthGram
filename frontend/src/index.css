@@ -1,52 +1,40 @@
 :root {
   --nav-bg-start: #2E3192;
-  /* Sapphire Blue start */
   --nav-bg-end: #1E2266;
-  /* Darker shade for gradient */
-  --nav-bg-start: #2E3192;
-  /* Sapphire Blue start */
-  --nav-bg-end: #1E2266;
-  /* Darker shade for gradient */
-  --light-bg-color: #f9f9f9;
-  /* Light mode background */
-  --dark-bg-color: #390d36;
-  /* Updated to your new purple */
-  --light-text-color: #1a1a1a;
-  /* Dark text for light mode */
-  --dark-text-color: #ffffff;
-  /* White text for dark mode */
-  --surface-overlay-1dp: #1c1c1c;
-  /* 5% white overlay */
-  --surface-overlay-6dp: rgba(255, 255, 255, 0.12);
-  /* 12% white overlay */
+  --surface-overlay-1dp: #1f1f1f;
+  --surface-overlay-6dp: #2c2c2c;
   --primary-btn-color: #d90429;
-  /* Red for Logout */
   --primary-btn-hover: #b00020;
-  /* Darker red for hover */
   --secondary-btn-color: #2E3192;
-  /* Green for headers/buttons */
   --secondary-btn-hover: #1E2266;
-  /* Darker green for hover */
+  --light-bg-color: #ffffff;
+  --light-text-color: #111111;
+  --dark-bg-color: #181818;
+  --dark-text-color: #eeeeee;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #242424;
+  --card-text-dark: #cccccc;
 }
 
-/* General Reset and Base Styles */
+/* General Reset and Bootstrap Base Compatibility */
 body,
 html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   max-width: 100vw;
+  overflow-x: hidden;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
-}
-
-body.light {
   background-color: var(--light-bg-color);
   color: var(--light-text-color);
 }
 
 body.dark {
   background: linear-gradient(180deg, #1c1c1c 0%, #343236 100%);
-  /* Shiny gradient with your new purple */
   color: var(--dark-text-color);
+}
+
+
+.page-content {
+  padding: 10px;
 }

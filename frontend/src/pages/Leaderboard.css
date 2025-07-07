@@ -1,75 +1,40 @@
-.leaderboard-container {
-    padding: 2rem;
-    margin-top: 100px;
-    margin-left: 20px;
-    margin-right: 20px;
-    background: var(--surface-overlay-6dp);
-    /* 12% overlay for elevation */
-    color: var(--light-text-color);
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+/* Leaderboard Root Styling */
+.leaderboard-root {
+    background-color: var(--light-bg-color) !important;
+    color: var(--light-text-color) !important;
+    min-height: 100vh;
+    padding-top: 80px;
 }
 
-body.dark .leaderboard-container {
-    background: var(--surface-overlay-6dp);
-    color: var(--dark-text-color);
-
+body.dark {
+    background: linear-gradient(180deg, #1c1c1c 0%, #343236 100%);
 }
 
-.leaderboard-table {
-    border-collapse: collapse;
-    width: 100%;
+
+/* Dark Mode for Leaderboard */
+body.dark .leaderboard-root {
+    background-color: var(--dark-bg-color) !important;
+    color: var(--dark-text-color) !important;
 }
 
-.leaderboard-table th,
-.leaderboard-table td {
-    border: 2px solid #2c2828;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 14px;
-    color: var(--light-text-color);
-    /* Ensure readability */
-    background: var(--surface-overlay-6dp);
-    /* 5% overlay for cells */
+/* Dark Mode Card & Table */
+body.dark .card {
+    background-color: var(--surface-overlay-6dp) !important;
+    color: var(--dark-text-color) !important;
+    border: none;
 }
 
-body.dark .leaderboard-table th,
-body.dark .leaderboard-table td {
-    border: 2px solid #a39999;
-    padding: 10px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 14px;
-    color: var(--dark-text-color);
-    /* Ensure readability */
-    background: var(--surface-overlay-1dp);
-    /* 5% overlay for cells */
+body.dark .table {
+    background-color: var(--surface-overlay-1dp) !important;
+    color: var(--dark-text-color) !important;
 }
 
-body.dark .leaderboard-table th,
-body.dark .leaderboard-table td {
-    border-color: #d2bebe;
+body.dark .table thead {
+    background-color: var(--secondary-btn-color) !important;
+    color: var(--dark-text-color) !important;
 }
 
-body.dark .leaderboard-table th {
-    background-color: var(--secondary-btn-color);
-    color: var(--dark-text-color);
-}
-
-.leaderboard-table thead {
-    background-color: var(--secondary-btn-color);
-    color: var(--light-text-color);
-    font-weight: bold;
-}
-
-.leaderboard-table img {
-    border: 1px solid #beb9b9;
-    border-radius: 4px;
-}
-
-body.dark .leaderboard-table img {
-    border-color: #aa9b9b;
+body.dark .table-bordered td,
+body.dark .table-bordered th {
+    border-color: #888 !important;
 }

@@ -8,8 +8,7 @@ const Profile = () => {
     const [message, setMessage] = useState('');
     const [points, setPoints] = useState(0);
     const [badges, setBadges] = useState([]);
-
-
+    const [approvingId, setApprovingId] = useState(null);
     useEffect(() => {
         fetchReports();
         fetchProfileData();
@@ -24,24 +23,19 @@ const Profile = () => {
                 setPoints(res.data.points);
                 setBadges(res.data.badges);
             })
-            .catch(err => {
-                console.error('Failed to fetch profile data:', err);
-            });
+            .catch(err => console.error('Failed to fetch profile data:', err));
     };
-
 
     const fetchReports = () => {
         const token = localStorage.getItem('access');
         axios.get('http://localhost:8000/api/reports/', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(res => {
                 const currentUser = localStorage.getItem('username');
                 const filteredReports = res.data
                     .filter(report => report.username === currentUser)
-                    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 🔁 sort descending
+                    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                 setUserReports(filteredReports);
             })
             .catch(err => {
@@ -53,18 +47,16 @@ const Profile = () => {
     const approveResolution = (id) => {
         const token = localStorage.getItem('access');
 
-        axios.post(`http://localhost:8000/api/reports/${id}/approve/`, {}, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+        // ✅ RETURN the axios Promise
+        return axios.post(`http://localhost:8000/api/reports/${id}/approve/`, {}, {
+            headers: { Authorization: `Bearer ${token}` }
         })
-            .then((res) => {
-                console.log("Approval Response ✅:", res);
+            .then(() => {
                 alert("✅ Resolution approved!");
-                fetchReports(); // refresh list
+                fetchReports();
             })
-            .catch((err) => {
-                console.error('Approval Error ❌:', err.response?.data || err.message);
+            .catch(err => {
+                console.error('Approval Error:', err);
                 alert("❌ Failed to approve resolution.");
             });
     };
@@ -74,9 +66,7 @@ const Profile = () => {
         const token = localStorage.getItem('access');
         if (window.confirm('Are you sure you want to delete this report?')) {
             axios.delete(`http://localhost:8000/api/reports/${id}/delete/`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                headers: { Authorization: `Bearer ${token}` }
             })
                 .then(() => {
                     setUserReports(prev => prev.filter(r => r.id !== id));
@@ -90,104 +80,87 @@ const Profile = () => {
     };
 
     return (
-        <div className="profile-page">
-            <h2>👤 My Profile</h2>
-            <p>Username: <strong>{localStorage.getItem('username')}</strong></p>
+        <div className="container profile-page shadow">
+            <h2 className="mb-3">👤 My Profile</h2>
+            <p className="mb-4">Username: <strong>{localStorage.getItem('username')}</strong></p>
 
-            <h3>🧾 My Hygiene Reports</h3>
-            {message && <p className="error">{message}</p>}
+            <h4 className="mb-3">🧾 My Hygiene Reports</h4>
+            {message && <p className="text-danger">{message}</p>}
 
             {userReports.length === 0 ? (
-                <p>You haven’t submitted any reports yet.</p>
+                <p className="text-muted">You haven’t submitted any reports yet.</p>
             ) : (
-                <ul className="report-list">
+                <ul className="list-group mb-4">
                     {userReports.map((report, idx) => (
-                        <li key={idx} className="report-item">
+                        <li key={idx} className="list-group-item report-item">
                             <div>
                                 <strong>📍 Issue:</strong> {report.issue_type.replace('_', ' ')}<br />
-                                <strong>📝 Description:</strong> {report.description || 'N/A'}<br />
+                                <strong>📝 Description:</strong> {report.description || 'N/A'}
                             </div>
 
-                            <div className="report-meta">
-                                <span>
-                                    <strong>🕒 Reported:</strong> {formatDistanceToNow(new Date(report.created_at), { addSuffix: true })}
+                            <div className="d-flex justify-content-between align-items-center mt-2">
+                                <span className="text-muted">
+                                    <strong>🕒</strong> {formatDistanceToNow(new Date(report.created_at), { addSuffix: true })}
                                 </span>
                                 <button
+                                    className="btn btn-sm btn-outline-danger delete-btn"
                                     onClick={() => handleDelete(report.id)}
-                                    className="delete-btn"
-                                    title="Delete Report"
                                 >
                                     🗑️
                                 </button>
                             </div>
 
                             {report.file && (
-                                <div>
+                                <div className="mt-2">
                                     <strong>📎 Proof:</strong><br />
-                                    <a className='proof-link' href={`http://localhost:8000${report.file}`} target="_blank" rel="noreferrer">
-                                        View Attachment
-                                    </a>
-                                </div>
-                            )}
-
-                            {report.is_resolved && report.resolution_proof && (
-                                <div>
-                                    <strong>🔧 Resolution Proof:</strong><br />
-                                    <a href={`http://localhost:8000${report.resolution_proof}`} target="_blank" rel="noreferrer">
-                                        View Resolution
-                                    </a>
+                                    <a href={`http://localhost:8000${report.file}`} className="proof-link" target="_blank" rel="noreferrer">View Attachment</a>
                                 </div>
                             )}
 
                             {report.resolution_submitted && !report.is_approved && (
-                                <div className="resolution-status">
-                                    <strong>📝 Resolution Submitted </strong>
-                                    <br></br>
-                                    <a href={`http://localhost:8000${report.resolution_proof}`} target="_blank" rel="noreferrer">
-                                        View Resolution
-                                    </a>
-                                    <p>{report.resolution_description || 'No description provided.'}</p>
+                                <div className="alert alert-warning mt-3">
+                                    <strong>📝 Resolution Submitted</strong><br />
+                                    <a href={`http://localhost:8000${report.resolution_proof}`} target="_blank" rel="noreferrer">View Resolution</a>
+                                    <p className="mb-1">{report.resolution_description || 'No description provided.'}</p>
                                     <button
-                                        className="approve-btn"
-                                        onClick={() => approveResolution(report.id)}
+                                        className="btn btn-success btn-sm"
+                                        disabled={approvingId === report.id}
+                                        onClick={() => {
+                                            setApprovingId(report.id);
+                                            approveResolution(report.id).finally(() => setApprovingId(null));
+                                        }}
                                     >
-                                        ✅ Approve Resolution
+                                        ✅ Approve
                                     </button>
-                                </div>
-                            )}
-                            {report.is_resolved && !report.is_approved && (
-                                <div className="resolution-pending">
-                                    <strong>⏳ Resolution Pending Approval</strong>
-                                </div>
-                            )}
-
-                            {!report.is_resolved && (
-                                <div className="resolution-not-submitted">
-                                    <strong>🔄 Resolution Not Submitted Yet</strong>
                                 </div>
                             )}
 
                             {report.is_resolved && report.is_approved && (
-                                <div className="resolution-approved">
-                                    <strong>✅ Resolution Approved!</strong>
-                                </div>
-                            )
-                            }
-                        </li>
+                                <div className="alert alert-success mt-3">✅ Resolution Approved!</div>
+                            )}
 
+                            {report.is_resolved && !report.is_approved && (
+                                <div className="alert alert-info mt-3">⏳ Resolution Pending Approval</div>
+                            )}
+
+                            {!report.is_resolved && (
+                                <div className="alert alert-secondary mt-3">🔄 Resolution Not Submitted Yet</div>
+                            )}
+                        </li>
                     ))}
                 </ul>
             )}
-            <h2>🏆 Points Earned: <span style={{ color: '#007bff' }}>{points}</span></h2>
+
+            <h4>🏆 Points Earned: <span className="text-primary">{points}</span></h4>
 
             {badges.length > 0 && (
-                <div className="badge-section">
-                    <h3>🎖️ Your Badges</h3>
-                    <ul className="badge-list">
+                <div className="badge-section mt-4">
+                    <h4 className="fw-bold mb-3">🎖️ Your Badges</h4>
+                    <div className="d-flex flex-wrap gap-2">
                         {badges.map((badge, index) => (
-                            <li key={index}>{badge}</li>
+                            <span key={index} className="badge custom-badge">{badge}</span>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             )}
 
