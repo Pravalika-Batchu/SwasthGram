@@ -2,7 +2,7 @@
   --nav-bg-start: #2E3192;
   --nav-bg-end: #1E2266;
   --surface-overlay-1dp: #1f1f1f;
-  --surface-overlay-6dp: #2c2c2c;
+  --surface-overlay-6dp: #966e6e;
   --primary-btn-color: #d90429;
   --primary-btn-hover: #b00020;
   --secondary-btn-color: #2E3192;
@@ -16,7 +16,6 @@
   --card-text-dark: #cccccc;
 }
 
-/* General Reset and Bootstrap Base Compatibility */
 body,
 html {
   margin: 0;
@@ -36,5 +35,5 @@ body.dark {
 
 
 .page-content {
-  padding: 10px;
+  padding: 0px;
 }
