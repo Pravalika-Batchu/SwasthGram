@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Auth.css';
 
 const Signup = () => {
     const [form, setForm] = useState({
@@ -31,31 +32,29 @@ const Signup = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <div className="card shadow-sm mx-auto" style={{ maxWidth: '450px' }}>
-                <div className="card-body">
-                    <h3 className="text-center text-primary mb-4">👤 Create Account</h3>
-                    {message && <div className="alert alert-info text-center">{message}</div>}
+        <div className="auth-page">
+            <div className="auth-card">
+                <h3 className="auth-title">👤 Create Account</h3>
+                {message && <div className="auth-message">{message}</div>}
 
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label className="form-label">Username</label>
-                            <input type="text" name="username" value={form.username} onChange={handleChange} className="form-control" required />
-                        </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Username</label>
+                        <input type="text" name="username" value={form.username} onChange={handleChange} className="form-control" required />
+                    </div>
 
-                        <div className="mb-3">
-                            <label className="form-label">Password</label>
-                            <input type="password" name="password" value={form.password} onChange={handleChange} className="form-control" required />
-                        </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password</label>
+                        <input type="password" name="password" value={form.password} onChange={handleChange} className="form-control" required />
+                    </div>
 
-                        <div className="mb-3">
-                            <label className="form-label">Confirm Password</label>
-                            <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} className="form-control" required />
-                        </div>
+                    <div className="mb-3">
+                        <label className="form-label">Confirm Password</label>
+                        <input type="password" name="confirmPassword" value={form.confirmPassword} onChange={handleChange} className="form-control" required />
+                    </div>
 
-                        <button type="submit" className="btn btn-primary w-100">Signup</button>
-                    </form>
-                </div>
+                    <button type="submit" className="btn btn-primary w-100">Signup</button>
+                </form>
             </div>
         </div>
     );
