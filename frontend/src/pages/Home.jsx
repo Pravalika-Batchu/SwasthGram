@@ -88,7 +88,7 @@ const Home = () => {
             </section>
 
             {/* Footer */}
-            <footer className="footer text-white py-4 text-center">
+            <footer className="footer py-4 text-center">
                 <p className="mb-1">Made with ❤️ by Pravalika Batchu | © 2025</p>
                 <p>
                     <a className="text-info text-decoration-none" href="https://github.com/Pravalika-Batchu/SwasthGram" target="_blank" rel="noreferrer">
