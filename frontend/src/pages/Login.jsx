@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axiosConfig';
+import './Auth.css';
 
 const Login = ({ setToken }) => {
     const [form, setForm] = useState({ username: '', password: '' });
@@ -28,26 +29,24 @@ const Login = ({ setToken }) => {
     };
 
     return (
-        <div className="container mt-5">
-            <div className="card shadow-sm mx-auto" style={{ maxWidth: '450px' }}>
-                <div className="card-body">
-                    <h3 className="text-center text-primary mb-4">🔐 Login</h3>
-                    {message && <div className="alert alert-info text-center">{message}</div>}
+        <div className="auth-page">
+            <div className="auth-card">
+                <h3 className="auth-title">🔐 Login</h3>
+                {message && <div className="auth-message">{message}</div>}
 
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <label htmlFor="username" className="form-label">Username</label>
-                            <input type="text" name="username" id="username" value={form.username} onChange={handleChange} className="form-control" required />
-                        </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label className="form-label">Username</label>
+                        <input type="text" name="username" value={form.username} onChange={handleChange} className="form-control" required />
+                    </div>
 
-                        <div className="mb-3">
-                            <label htmlFor="password" className="form-label">Password</label>
-                            <input type="password" name="password" id="password" value={form.password} onChange={handleChange} className="form-control" required />
-                        </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password</label>
+                        <input type="password" name="password" value={form.password} onChange={handleChange} className="form-control" required />
+                    </div>
 
-                        <button type="submit" className="btn btn-primary w-100">Login</button>
-                    </form>
-                </div>
+                    <button type="submit" className="btn btn-primary w-100">Login</button>
+                </form>
             </div>
         </div>
     );
