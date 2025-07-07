@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Leaderboard.css';
 
 const Leaderboard = () => {
     const [leaders, setLeaders] = useState([]);
@@ -50,7 +51,6 @@ const Leaderboard = () => {
             </div>
         </div>
     );
-
 };
 
 export default Leaderboard;
