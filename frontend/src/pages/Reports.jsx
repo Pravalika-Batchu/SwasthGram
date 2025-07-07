@@ -128,9 +128,9 @@ const Reports = () => {
 
 
             {loading ? (
-                <p className="text-muted">⏳ Loading reports...</p>
+                <p className="load-text">⏳ Loading reports...</p>
             ) : reports.length === 0 ? (
-                <p className="text-muted">No reports available.</p>
+                <p className="load-text">No reports available.</p>
             ) : (
                 <div className="table-responsive">
                     <table className="table custom-table table-bordered table-striped table-hover">
