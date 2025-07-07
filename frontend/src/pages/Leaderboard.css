@@ -3,38 +3,51 @@
     background-color: var(--light-bg-color) !important;
     color: var(--light-text-color) !important;
     min-height: 100vh;
-    padding-top: 80px;
+    padding-top: 4px;
 }
 
-body.dark {
-    background: linear-gradient(180deg, #1c1c1c 0%, #343236 100%);
-}
-
-
-/* Dark Mode for Leaderboard */
 body.dark .leaderboard-root {
     background-color: var(--dark-bg-color) !important;
     color: var(--dark-text-color) !important;
 }
 
-/* Dark Mode Card & Table */
+/* Dark Mode Page Background */
+body.dark {
+    background: linear-gradient(180deg, #1a1a2e 0%, #2f2d31 100%);
+}
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
 body.dark .card {
-    background-color: var(--surface-overlay-6dp) !important;
+    background-color: #2e2e3f !important;
     color: var(--dark-text-color) !important;
-    border: none;
+    border: 1px solid #444;
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.05);
+}
+
+/* Table Styling */
+.table {
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 body.dark .table {
-    background-color: var(--surface-overlay-1dp) !important;
-    color: var(--dark-text-color) !important;
+    background-color: #3b3b5a !important;
+    color: #f1f1f1 !important;
 }
 
 body.dark .table thead {
-    background-color: var(--secondary-btn-color) !important;
-    color: var(--dark-text-color) !important;
+    background-color: #444a6d !important;
+    color: #fff !important;
 }
 
 body.dark .table-bordered td,
 body.dark .table-bordered th {
-    border-color: #888 !important;
+    border-color: #777 !important;
 }
