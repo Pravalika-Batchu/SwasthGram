@@ -1,89 +1,85 @@
-.auth-form {
-    max-width: 400px;
-    margin: 80px auto;
-    padding: 30px 25px;
-    background: #fdfdfd;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+/* Full Page Centering */
+.auth-page {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-body.dark .auth-form {
-    background: #2f2f41;
-    border-color: #555;
-}
-
-.auth-form h3 {
-    text-align: center;
-    color: var(--secondary-btn-color);
-}
-
-body.dark .auth-form h3 {
-    color: #fff;
-}
-
-.auth-form-fields {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.input-group label {
-    font-weight: 600;
-    color: var(--light-text-color);
-}
-
-body.dark .input-group label {
-    color: #ccc;
-}
-
-.input-group input {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--light-bg-color);
     padding: 10px;
-    font-size: 1rem;
+}
+
+body.dark .auth-page {
+    background-color: var(--dark-bg-color);
+}
+
+/* Auth Card */
+.auth-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s ease;
+}
+
+body.dark .auth-card {
+    background-color: #2b2b3c;
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.05);
+}
+
+/* Title */
+.auth-title {
+    text-align: center;
+    font-weight: 700;
+    color: #0d6efd;
+    margin-bottom: 20px;
+}
+
+body.dark .auth-title {
+    color: #6ea8fe;
+}
+
+/* Message */
+.auth-message {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    background-color: #e9f7ef;
+    color: #155724;
     border-radius: 6px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
+    margin-bottom: 15px;
+}
+
+body.dark .auth-message {
+    background-color: #2e4735;
+    color: #a5f0be;
+}
+
+/* Form Control */
+.form-label {
+    font-weight: 600;
     color: #333;
 }
 
-body.dark .input-group input {
+body.dark .form-label {
+    color: #ccc;
+}
+
+.form-control {
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+body.dark .form-control {
     background-color: #3b3b5a;
     color: #fff;
     border-color: #555;
 }
 
-.submit-button {
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    background-color: var(--secondary-btn-color);
-    color: white;
-    font-size: 1rem;
+.btn-primary {
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: var(--secondary-btn-hover);
-}
-
-.login-message {
-    text-align: center;
-    font-size: 0.9rem;
-    padding: 8px;
-    color: #155724;
-}
-
-body.dark .login-message {
-    color: #28a745;
 }
