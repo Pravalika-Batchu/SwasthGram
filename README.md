@@ -14,7 +14,7 @@ It bridges the gap between citizens and authorities through real-time data visua
 ---
 
 ## 🚀 Deployment
-- 🔗 Live Web App:https://swasthgram.vercel.app](https://swasthgram.netlify.app/
+- 🔗 Live Web App: https://swasthgram.netlify.app/
 - 🔗 Backend API: https://swasthgram.onrender.com
 
 
