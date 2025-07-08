@@ -16,7 +16,6 @@
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    background: var(--surface-overlay-6dp);
 }
 
 body.dark .chat-box {
