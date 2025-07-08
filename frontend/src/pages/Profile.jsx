@@ -15,7 +15,7 @@ const Profile = () => {
 
     const fetchProfileData = () => {
         const token = localStorage.getItem('access');
-        axios.get('http://localhost:8000/api/profile/', {
+        axios.get('https://swasthgram.onrender.com/api/profile/', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(res => {
@@ -27,7 +27,7 @@ const Profile = () => {
 
     const fetchReports = () => {
         const token = localStorage.getItem('access');
-        axios.get('http://localhost:8000/api/reports/', {
+        axios.get('https://swasthgram.onrender.com/api/reports/', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(res => {
@@ -45,7 +45,7 @@ const Profile = () => {
 
     const approveResolution = (id) => {
         const token = localStorage.getItem('access');
-        axios.post(`http://localhost:8000/api/reports/${id}/approve/`, {}, {
+        axios.post(`https://swasthgram.onrender.com/api/reports/${id}/approve/`, {}, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(() => {
@@ -61,7 +61,7 @@ const Profile = () => {
     const handleDelete = (id) => {
         const token = localStorage.getItem('access');
         if (window.confirm('Are you sure you want to delete this report?')) {
-            axios.delete(`http://localhost:8000/api/reports/${id}/delete/`, {
+            axios.delete(`https://swasthgram.onrender.com/api/reports/${id}/delete/`, {
                 headers: { Authorization: `Bearer ${token}` }
             })
                 .then(() => {
@@ -109,14 +109,14 @@ const Profile = () => {
                             {report.file && (
                                 <div className="mt-2">
                                     <strong>📎 Proof:</strong><br />
-                                    <a href={`http://localhost:8000${report.file}`} className="proof-link" target="_blank" rel="noreferrer">View Attachment</a>
+                                    <a href={`https://swasthgram.onrender.com${report.file}`} className="proof-link" target="_blank" rel="noreferrer">View Attachment</a>
                                 </div>
                             )}
 
                             {report.resolution_submitted && !report.is_approved && (
                                 <div className="alert alert-warning mt-3">
                                     <strong>📝 Resolution Submitted</strong><br />
-                                    <a href={`http://localhost:8000${report.resolution_proof}`} target="_blank" rel="noreferrer">View Resolution</a>
+                                    <a href={`https://swasthgram.onrender.com${report.resolution_proof}`} target="_blank" rel="noreferrer">View Resolution</a>
                                     <p className="mb-1">{report.resolution_description || 'No description provided.'}</p>
                                     <button className="btn btn-success btn-sm" onClick={() => approveResolution(report.id)}>✅ Approve</button>
                                 </div>
