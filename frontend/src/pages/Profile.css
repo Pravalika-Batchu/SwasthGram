@@ -115,20 +115,26 @@ body.dark .approve-btn:hover {
 }
 
 .custom-badge {
-    background-color: #e2e3ff;
-    color: #2e3192;
+    background-color: #d6f5e3;
+    color: #155724;
     padding: 8px 14px;
     font-size: 14px;
     border-radius: 20px;
-    font-weight: 500;
+    font-weight: 600;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     display: inline-block;
     margin-right: 8px;
     margin-bottom: 8px;
 }
 
+
 body.dark .custom-badge {
     background-color: #3b3b58;
     color: #f8f8f8;
     border: 1px solid #666;
+}
+
+.custom-badge:hover {
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
 }
