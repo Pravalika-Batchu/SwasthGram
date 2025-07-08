@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../axiosConfig'; // Uses JWT + baseURL
+import axios from '../axiosConfig';
 import { getGeminiSeverity } from '../utils/openRouterHelper';
-import './RList.css'; // Custom styles for reports page
+import './RList.css';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -15,13 +15,12 @@ const Reports = () => {
         const fetchReports = async () => {
             try {
                 const token = localStorage.getItem('access');
-                const res = await axios.get('http://localhost:8000/api/reports/', {
+                const res = await axios.get('https://swasthgram.onrender.com/api/reports/', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 
                 setReports(res.data);
 
-                // Fetch AI severity for each
                 const severityMap = {};
                 for (const r of res.data) {
                     const key = `${r.id}`;
@@ -149,7 +148,7 @@ const Reports = () => {
                         </thead>
                         <tbody>
                             {reports.map((report, index) => {
-                                const fileUrl = `http://localhost:8000${report.file}`;
+                                const fileUrl = `https://swasthgram.onrender.com${report.file}`;
                                 const isImage = /\.(jpg|jpeg|png|gif)$/i.test(report.file || '');
                                 return (
                                     <tr key={index}>
