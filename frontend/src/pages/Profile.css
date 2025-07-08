@@ -115,8 +115,8 @@ body.dark .approve-btn:hover {
 }
 
 .custom-badge {
-    background-color: #d6f5e3;
-    color: #155724;
+    background-color: #141514;
+    color: #000600;
     padding: 8px 14px;
     font-size: 14px;
     border-radius: 20px;
@@ -132,6 +132,10 @@ body.dark .custom-badge {
     background-color: #3b3b58;
     color: #f8f8f8;
     border: 1px solid #666;
+}
+
+.badges {
+    color: #191a19;
 }
 
 .custom-badge:hover {
