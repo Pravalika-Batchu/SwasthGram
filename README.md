@@ -83,7 +83,7 @@ SwasthGram aims to:
 
 ## 🧪 Sample AI Insight
 
- "Multiple garbage and stagnant water complaints reported in the last 7 days near 3rd block. Risk of vector-borne diseases like dengue is high. Immediate cleanup is advised."
+ Multiple garbage and stagnant water complaints reported in the last 7 days near 3rd block. Risk of vector-borne diseases like dengue is high. Immediate cleanup is advised.
 
 ---
 
