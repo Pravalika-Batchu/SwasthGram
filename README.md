@@ -11,6 +11,12 @@ It bridges the gap between citizens and authorities through real-time data visua
 ![SwasthGram Homepage](./screenshots/homepage.png)
 
 
+## 🚀 Deployment
+🔗 Live Web App:https://swasthgram.vercel.app](https://swasthgram.netlify.app/
+🔗 Backend API: https://swasthgram.onrender.com
+
+
+
 ## 🌟 Key Features
 
 ### 📍 Hygiene Issue Reporting
