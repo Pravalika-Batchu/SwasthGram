@@ -54,11 +54,16 @@ Users can filter reports based on:
 - Issue type (garbage, water, toilet)
 - Time of report (7 days, 30 days, all time)
 
-### 📥 Admin Dashboard & Reporting
-Authorities can:
-- View all community reports in a table
-- Track **status** of reports (Pending / Resolved)
-- Export reports to **CSV or PDF** format for offline review
+### 📊 Community Reports Panel
+View all hygiene-related reports submitted by users across different locations
+
+Filter reports by issue type and timeline (e.g., last 7 days, last 30 days)
+
+Check automatically classified AI severity levels (High / Medium / Low)
+
+Export data in CSV or PDF format — available for any user, no login required
+
+Monitor report status: Pending / Resolved
 
 ---
 
@@ -66,8 +71,8 @@ Authorities can:
 
 - **Frontend**: React.js, Leaflet.js, jsPDF, Bootstrap
 - **Backend**: Django REST Framework, JWT Auth
-- **Database**: PostgreSQL
-- **AI Integration**: OpenRouter AI (Gemini / Mistral models)
+- **Database**: Sqlite3
+- **AI Integration**: OpenRouter AI (Mistral models)
 
 ---
 
