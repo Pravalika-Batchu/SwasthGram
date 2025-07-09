@@ -8,7 +8,7 @@ It bridges the gap between citizens and authorities through real-time data visua
 
 ## 📸 Homepage Preview
 
-![SwasthGram Homepage](./HomePage1.png)
+![SwasthGram Homepage](./homepage01.png)
 
 
 ---
