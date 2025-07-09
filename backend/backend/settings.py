@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pe!$#k9s7m+chrnf&@jkz_h4%73gt6zd_sm_@3#b@i)xl(p%00'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -51,9 +51,20 @@ INSTALLED_APPS = [
     'hygiene', 
     'rest_framework_simplejwt',
     'authentication',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'your-cloud-name',
+    'API_KEY': 'ur-api-key',
+    'API_SECRET': 'your-api-secret'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,7 +72,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -76,12 +86,22 @@ REST_FRAMEWORK = {
 
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://swasthgram.netlify.app",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 
 
 ROOT_URLCONF = 'backend.urls'
