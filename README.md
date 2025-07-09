@@ -57,7 +57,7 @@ Users can filter reports based on:
 ### 📊 Community Reports Panel
 View all hygiene-related reports submitted by users across different locations
 
-Check automatically classified AI severity levels (High / Medium / Low)
+View the proofs submitted by them.
 
 Export data in CSV or PDF format — available for any user, no login required
 
