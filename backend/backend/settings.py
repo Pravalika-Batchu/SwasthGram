@@ -88,6 +88,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "https://swasthgram.netlify.app",
+    "http://localhost:3000"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
