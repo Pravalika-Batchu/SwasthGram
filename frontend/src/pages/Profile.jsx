@@ -100,7 +100,7 @@ const Profile = () => {
                                 </span>
                                 <button
                                     className="btn btn-sm btn-outline-danger delete-btn"
-                                    onClick={() => handleDelete(report.id)}
+                                    onClick={() => handleDelete(report.id)} title='Delete this report'
                                 >
                                     🗑️
                                 </button>

@@ -1,4 +1,4 @@
-const apiKey = "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";
+const apiKey = "Ur-API-KEY";
 
 export async function getGeminiText(prompt) {
     try {
