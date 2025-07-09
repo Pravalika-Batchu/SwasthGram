@@ -57,13 +57,10 @@ Users can filter reports based on:
 ### 📊 Community Reports Panel
 View all hygiene-related reports submitted by users across different locations
 
-Filter reports by issue type and timeline (e.g., last 7 days, last 30 days)
-
 Check automatically classified AI severity levels (High / Medium / Low)
 
 Export data in CSV or PDF format — available for any user, no login required
 
-Monitor report status: Pending / Resolved
 
 ---
 
