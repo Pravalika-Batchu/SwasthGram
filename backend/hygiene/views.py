@@ -112,7 +112,7 @@ def submit_resolution(request, report_id):
         return Response({'error': 'Resolution already submitted.'}, status=400)
 
     file = request.FILES.get('file')
-    description = request.POST.get('description', '').strip()  # ✅ fetch description
+    description = request.POST.get('description', '').strip() 
 
     if not file:
         return Response({'error': 'Proof file is required.'}, status=400)
