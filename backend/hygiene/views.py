@@ -116,11 +116,7 @@ def submit_resolution(request, report_id):
 
     if not file:
         return Response({'error': 'Proof file is required.'}, status=400)
-
-<<<<<<< HEAD
-=======
-    # Update resolution fields
->>>>>>> f27c4f3 (updated backend files)
+    
     report.resolution_submitted = True
     report.resolved_by = request.user
     report.resolution_proof = file
