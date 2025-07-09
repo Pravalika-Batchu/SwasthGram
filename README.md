@@ -105,6 +105,6 @@ SwasthGram aims to:
 Hi! I’m **Pravalika Batchu**, a Computer Science undergrad passionate about using tech to solve real-world problems. I enjoy building impactful projects that combine full-stack development, AI integration, and user-focused design.
 
 This project reflects my interest in public health tech, geospatial data, and community-driven solutions.  
-Feel free to connect with me on [LinkedIn]([https://www.linkedin.com/in/pravalikabatchu](https://www.linkedin.com/in/pravalika-batchu-965bb2266/)) or drop a message if you’re curious about the project!
+Feel free to connect with me on [LinkedIn](https://www.linkedin.com/in/pravalika-batchu-965bb2266/) or drop a message if you’re curious about the project!
 
 ---
