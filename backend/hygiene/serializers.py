@@ -4,6 +4,7 @@ from .models import HygieneReport
 class HygieneReportSerializer(serializers.ModelSerializer):
     file_url = serializers.SerializerMethodField()
     resolution_proof_url = serializers.SerializerMethodField()
+    username = serializers.CharField(source='user.username', read_only=True) 
 
     def get_file_url(self, obj):
         request = self.context.get('request')
@@ -19,5 +20,5 @@ class HygieneReportSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = HygieneReport
-        fields = '__all__'  # or list all required fields manually + the two above
+        fields = '__all__'  
         read_only_fields = ['user']
