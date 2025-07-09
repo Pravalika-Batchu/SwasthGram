@@ -112,12 +112,19 @@ def submit_resolution(request, report_id):
         return Response({'error': 'Resolution already submitted.'}, status=400)
 
     file = request.FILES.get('file')
+    description = request.POST.get('description', '').strip()  # ✅ fetch description
+
     if not file:
         return Response({'error': 'Proof file is required.'}, status=400)
 
+<<<<<<< HEAD
+=======
+    # Update resolution fields
+>>>>>>> f27c4f3 (updated backend files)
     report.resolution_submitted = True
     report.resolved_by = request.user
     report.resolution_proof = file
+    report.resolution_description = description 
     report.save()
 
     return Response({'message': 'Resolution submitted and waiting for approval!'}, status=200)

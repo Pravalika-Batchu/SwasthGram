@@ -16,6 +16,7 @@ class HygieneReport(models.Model):
     is_resolved = models.BooleanField(default=False)
     resolved_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='resolved_issues')
     resolution_proof = models.FileField(upload_to='resolution_proofs/', null=True, blank=True)
+    resolution_description = models.TextField(blank=True, null=True)  # ✅ ADD THIS LINE
     resolved_at = models.DateTimeField(null=True, blank=True)
     # Add to HygieneReport model
     is_approved = models.BooleanField(default=False)

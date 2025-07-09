@@ -1,4 +1,4 @@
-const apiKey = "Add-ur-api-key-here";
+const apiKey = "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";
 
 export async function getGeminiText(prompt) {
     try {
@@ -27,10 +27,16 @@ export async function getGeminiText(prompt) {
     }
 }
 // Severity Classifier
-export const getGeminiSeverity = async (issueType, description) => {
-    const prompt = `You're a public health AI. Classify the hygiene issue based on severity.
-Issue: ${issueType}, Description: ${description}.
-Respond with just one word: "high", "medium", or "low".`;
+export const getGeminiSeverity = async (issueType, description, count) => {
+    const prompt = `
+You're a public health AI system. Based on the following hygiene issue, classify the severity into one of these categories: "high", "medium", or "low".
+
+Issue Type: ${issueType}
+Description: ${description}
+Number of similar complaints: ${count}
+
+Just respond with one word: high / medium / low. Do not include any explanation.
+    `.trim();
 
     try {
         const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -38,27 +44,26 @@ Respond with just one word: "high", "medium", or "low".`;
             headers: {
                 'Authorization': `Bearer ${apiKey}`,
                 'Content-Type': 'application/json',
-                'HTTP-Referer': 'https://swasthgram.netlify.app',
                 'X-Title': 'SwasthGram Severity Check'
             },
             body: JSON.stringify({
-                model: "google/gemini-pro",  // ✅ Consistent model
-                messages: [
-                    { role: "system", content: "You are a helpful assistant." },
-                    { role: "user", content: prompt }
-                ],
+                model: "mistralai/mistral-7b-instruct",
+                messages: [{ role: "user", content: prompt }],
                 max_tokens: 10
             })
         });
 
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
-        const reply = data.choices?.[0]?.message?.content?.toLowerCase();
+        let reply = data.choices?.[0]?.message?.content?.toLowerCase()?.trim();
+        console.log("🧠 AI replied with severity:", reply);
+
+        // ✅ Normalize the response to one of the expected values
         if (reply.includes("high")) return "high";
         if (reply.includes("medium")) return "medium";
-        return "low";
+        if (reply.includes("low")) return "low";
+        return "medium"; // fallback
     } catch (error) {
-        console.error("Gemini severity error:", error);
+        console.error("Severity error:", error);
         return "medium";
     }
 };

@@ -15,4 +15,6 @@ urlpatterns = [
     path('api/auth/', include('authentication.urls')),  
     path('api/', include('hygiene.urls')),
     path('', home_redirect),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
