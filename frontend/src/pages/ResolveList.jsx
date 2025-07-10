@@ -9,7 +9,7 @@ const ResolveList = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('access');
-        axios.get('http://localhost:8000/api/reports/', {
+        axios.get('https://swasthgram.onrender.com/api/reports/', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -47,7 +47,7 @@ const ResolveList = () => {
                                 <tr key={index}>
                                     <td>{issue.issue_type.replace('_', ' ')}</td>
                                     <td>{issue.description || 'N/A'}</td>
-                                    <td>{issue.username}</td>
+                                    <td>{issue.username || 'N/A'}</td>
                                     <td>{`${issue.latitude}, ${issue.longitude}`}</td>
                                     <td>
                                         <button
