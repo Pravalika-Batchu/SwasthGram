@@ -23,7 +23,7 @@ const ResolveForm = () => {
         formData.append('file', file);
         formData.append('description', description);
 
-        axios.post(`http://localhost:8000/api/reports/${reportId}/resolve/`, formData, {
+        axios.post(`https://swasthgram.onrender.com/api/reports/${reportId}/resolve/`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
