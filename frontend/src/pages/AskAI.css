@@ -3,11 +3,13 @@
     max-width: 700px;
     margin: 70px auto 0;
     font-family: 'Segoe UI', sans-serif;
+    position: relative;
+    z-index: 3;
 }
 
 /* Chat Box */
 .chat-box {
-    background-color: #f1f0f0;
+    background-color: var(--card-bg-light);
     border: 2px solid #ddd;
     border-radius: 8px;
     padding: 1rem;
@@ -16,11 +18,11 @@
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
+    z-index: 3;
 }
 
 body.dark .chat-box {
-    background: #232334;
-    /* ✅ Neutral dark shade */
+    background: var(--card-bg-dark);
     border-color: #555;
 }
 
@@ -32,7 +34,7 @@ body.dark .chat-box {
     margin-bottom: 12px;
     word-wrap: break-word;
     line-height: 1.4;
-    background: #f1f0f0;
+    background: var(--card-bg-light);
 }
 
 .chat-message.user {
@@ -48,7 +50,7 @@ body.dark .chat-message.user {
 }
 
 .chat-message.assistant {
-    background: #f1f0f0;
+    background: var(--card-bg-light);
     align-self: flex-start;
     margin-right: auto;
     border-top-left-radius: 0;
@@ -57,7 +59,7 @@ body.dark .chat-message.user {
 
 body.dark .chat-message.assistant {
     background: #2d2d40;
-    color: #eee;
+    color: var(--dark-text-color);
 }
 
 /* Input Section */
@@ -73,11 +75,12 @@ body.dark .chat-message.assistant {
     font-size: 14px;
     border-radius: 6px;
     border: 1px solid #ccc;
-    background: var(--light-bg-color)
+    background: var(--card-bg-light);
+    color: var(--light-text-color);
 }
 
 body.dark .chat-input textarea {
-    background: #2c2c3c;
+    background: var(--card-bg-dark);
     border-color: #555;
     color: var(--dark-text-color);
 }
