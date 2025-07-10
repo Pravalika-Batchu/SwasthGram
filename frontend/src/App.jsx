@@ -20,11 +20,20 @@ function App() {
   const [token, setToken] = useState(localStorage.getItem('access'));
 
   return (
+
     <div className="glass-container">
+
       <Navbar token={token} setToken={setToken} />
+      <div className="global-bg">
+        <div className="aurora-layer aurora-layer-1"></div>
+        <div className="aurora-layer aurora-layer-2"></div>
+        <div className="aurora-layer aurora-layer-3"></div>
+        <div className="gradient-overlay"></div>
+      </div>
       <main className="page-content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login setToken={setToken} />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/map" element={<RiskAnalysis />} />
           <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/signup" element={<Signup />} />
