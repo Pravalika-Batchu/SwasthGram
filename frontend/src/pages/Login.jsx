@@ -15,7 +15,7 @@ const Login = ({ setToken }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('http://localhost:8000/api/auth/login/', form);
+            const res = await axios.post('https://swasthgram.onrender.com/api/auth/login/', form);
             const { access, refresh } = res.data;
             localStorage.setItem('access', access);
             localStorage.setItem('refresh', refresh);
@@ -29,24 +29,48 @@ const Login = ({ setToken }) => {
     };
 
     return (
-        <div className="auth-page">
-            <div className="auth-card">
-                <h3 className="auth-title">🔐 Login</h3>
-                {message && <div className="auth-message">{message}</div>}
+        <div className="page-content">
+            <div className="auth-page">
+                <div className="bubble-background">
+                    <div className="bubble bubble-1"></div>
+                    <div className="bubble bubble-2"></div>
+                    <div className="bubble bubble-3"></div>
+                    <div className="bubble bubble-4"></div>
+                    <div className="bubble bubble-5"></div>
+                    <div className="bubble bubble-6"></div>
+                </div>
+                <div className="auth-card animate-card-pop">
+                    <h3 className="auth-title">🔐 Login</h3>
+                    {message && <div className="auth-message">{message}</div>}
 
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label className="form-label">Username</label>
-                        <input type="text" name="username" value={form.username} onChange={handleChange} className="form-control" required />
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label className="form-label">Username</label>
+                            <input
+                                type="text"
+                                name="username"
+                                value={form.username}
+                                onChange={handleChange}
+                                className="form-control animate-input"
+                                required
+                            />
+                        </div>
 
-                    <div className="mb-3">
-                        <label className="form-label">Password</label>
-                        <input type="password" name="password" value={form.password} onChange={handleChange} className="form-control" required />
-                    </div>
+                        <div className="mb-3">
+                            <label className="form-label">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                value={form.password}
+                                onChange={handleChange}
+                                className="form-control animate-input"
+                                required
+                            />
+                        </div>
 
-                    <button type="submit" className="btn btn-primary w-100">Login</button>
-                </form>
+                        <button type="submit" className="btn btn-primary w-100 animate-button">Login</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
