@@ -117,7 +117,7 @@ const Profile = () => {
                                 <div className="alert alert-warning mt-3">
                                     <strong>📝 Resolution Submitted</strong><br />
                                     <a href={`https://swasthgram.onrender.com${report.resolution_proof}`} target="_blank" rel="noreferrer">View Resolution</a>
-                                    <p className="mb-1">{report.resolution_description || 'No description provided.'}</p>
+                                    <p className="mb-1"><b>Description :</b> {report.resolution_description || 'No description provided.'}</p>
                                     <button className="btn btn-success btn-sm" onClick={() => approveResolution(report.id)}>✅ Approve</button>
                                 </div>
                             )}
