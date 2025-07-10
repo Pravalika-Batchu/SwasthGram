@@ -56,15 +56,20 @@ const Report = () => {
             a.probability > b.probability ? a : b
         );
 
-        const label = topPrediction.className;
+        const rawLabel = topPrediction.className;
+        const mappedLabel = {
+            "Garbage": "garbage",
+            "Stagnant Water": "stagnant_water",
+            "Unclean Toilet": "unclean_toilet",
+        }[rawLabel] || "";
+
         const confidence = (topPrediction.probability * 100).toFixed(2);
+        setPrediction(`${rawLabel} (${confidence}%)`);
+        setForm((prev) => ({ ...prev, issue_type: mappedLabel }));
 
-        setPrediction(`${label} (${confidence}%)`);
-        setForm((prev) => ({ ...prev, issue_type: label }));
+        speak(`This looks like ${rawLabel}. Please complete the form.`);
 
-        speak(`This looks like ${label}. Please complete the form.`);
-
-        const descPrompt = `Write a short(around 3-10 line) hygiene complaint description from a citizen who found ${label.replace('_', ' ')}. Include urgency, inconvenience, and polite language.`;
+        const descPrompt = `Write a short(around 3-10 line) hygiene complaint description from a citizen who found ${rawLabel.toLowerCase()}. Include urgency, inconvenience, and polite language.`;
         const aiDesc = await getGeminiText(descPrompt);
         setForm((prev) => ({ ...prev, description: aiDesc }));
     };
@@ -118,7 +123,7 @@ const Report = () => {
 
         try {
             const token = localStorage.getItem('access');
-            await axios.post('http://localhost:8000/api/reports/', formData, {
+            await axios.post('https://swasthgram.onrender.com/api/reports/', formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -183,15 +188,19 @@ const Report = () => {
                     {prediction && <p className="text-muted">Prediction: {prediction}</p>}
 
                     <label>Issue Type</label>
-                    <input
-                        className="form-control"
-                        type="text"
+                    <select
+                        className="form-select"
                         name="issue_type"
                         value={form.issue_type}
                         onChange={handleChange}
-                        placeholder="Auto-filled by AI"
                         required
-                    />
+                    >
+                        <option value="">Select Issue Type</option>
+                        <option value="stagnant_water">Stagnant Water</option>
+                        <option value="garbage">Garbage</option>
+                        <option value="unclean_toilet">Unclean Toilet</option>
+                    </select>
+
 
                     <label>Description</label>
                     <textarea
