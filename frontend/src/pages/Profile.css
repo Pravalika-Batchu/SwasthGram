@@ -2,32 +2,34 @@
     margin-top: 80px;
     padding: 2rem;
     border-radius: 10px;
-    background: #ffffff;
-    color: #222;
+    background: var(--card-bg-light);
+    color: var(--light-text-color);
+    z-index: 3;
 }
 
 body.dark .profile-page {
-    background: #1f1f2e;
-    color: #f0f0f0;
+    background: var(--card-bg-dark);
+    color: var(--dark-text-color);
 }
 
-/* ========== Report Item ========== */
+/* Report Item */
 .report-item {
-    background-color: #f9f9f9;
+    background-color: var(--card-bg-light);
     border-radius: 10px;
     margin-bottom: 1rem;
     font-size: 0.95rem;
     padding: 1rem;
     border: 1px solid #ddd;
+    z-index: 3;
 }
 
 body.dark .report-item {
-    background-color: #2a2a3a;
-    color: #f5f5f5;
+    background-color: var(--card-bg-dark);
+    color: var(--dark-text-color);
     border: 1px solid #444;
 }
 
-/* ========== Delete Button ========== */
+/* Delete Button */
 .delete-btn {
     width: 30px;
     height: 30px;
@@ -48,7 +50,7 @@ body.dark .report-item {
     border-radius: 50%;
 }
 
-/* ========== Proof Link ========== */
+/* Proof Link */
 .proof-link {
     color: #007bff;
     text-decoration: underline;
@@ -58,7 +60,7 @@ body.dark .proof-link {
     color: #67d1ff;
 }
 
-/* ========== Resolution Status Sections ========== */
+/* Resolution Status Sections */
 .alert,
 .resolution-status,
 .resolution-pending,
@@ -67,10 +69,11 @@ body.dark .proof-link {
     font-size: 0.95rem;
     padding: 0.75rem 1rem;
     border-radius: 8px;
-    background-color: #eef1f5;
-    color: #333;
+    background-color: var(--card-bg-light);
+    color: var(--light-text-color);
     margin-top: 10px;
     border: 1px solid #ddd;
+    z-index: 3;
 }
 
 body.dark .alert,
@@ -78,12 +81,12 @@ body.dark .resolution-status,
 body.dark .resolution-pending,
 body.dark .resolution-approved,
 body.dark .resolution-not-submitted {
-    background-color: #29293d;
-    color: #eeeeee;
+    background-color: var(--card-bg-dark);
+    color: var(--dark-text-color);
     border-color: #555;
 }
 
-/* ========== Approve Button ========== */
+/* Approve Button */
 .approve-btn {
     margin-top: 10px;
     padding: 8px 14px;
@@ -109,14 +112,15 @@ body.dark .approve-btn:hover {
     background-color: #0056b3;
 }
 
-/* ========== Badges (No list style) ========== */
+/* Badges (No list style) */
 .badge-section {
     margin-top: 2rem;
+    z-index: 3;
 }
 
 .custom-badge {
-    background-color: #141514;
-    color: #000600;
+    background-color: var(--card-bg-light);
+    color: var(--light-text-color);
     padding: 8px 14px;
     font-size: 14px;
     border-radius: 20px;
@@ -127,15 +131,18 @@ body.dark .approve-btn:hover {
     margin-bottom: 8px;
 }
 
-
 body.dark .custom-badge {
-    background-color: #3b3b58;
-    color: #f8f8f8;
+    background-color: var(--card-bg-dark);
+    color: var(--dark-text-color);
     border: 1px solid #666;
 }
 
 .badges {
-    color: #191a19;
+    color: var(--light-text-color);
+}
+
+body.dark .badges {
+    color: var(--dark-text-color);
 }
 
 .custom-badge:hover {
