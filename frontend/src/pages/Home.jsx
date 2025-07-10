@@ -1,42 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 
 const Home = () => {
+    const [showTypewriter, setShowTypewriter] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowTypewriter(true);
+        }, 100);
+        return () => clearTimeout(timer);
+    }, []);
+
     const features = [
         {
-            title: "🧠 AI Detection",
-            desc: "Upload an image and let our AI model detect hygiene issues instantly.",
+            title: "AI Detection & Reporting 🧠",
+            desc: "Detect hygiene issues instantly and upload with AI-powered analysis.",
+            link: "/report"
         },
         {
-            title: "📝 Smart Reporting",
-            desc: "Report issues in seconds with AI-powered suggestions, geolocation & photo uploads.",
+            title: "Leaderboard 🏆",
+            desc: "See top contributors making a difference in community hygiene.",
+            link: "/leaderboard"
         },
         {
-            title: "🤖 Ask AI Bot",
-            desc: "Ask our AI bot about hygiene issues or get health tips instantly!",
+            title: "Ask AI Bot 🧼",
+            desc: "Get instant hygiene tips or ask about issues with our AI bot!",
+            link: "/ask-ai"
         },
         {
-            title: "🗺️ Risk Zones",
-            desc: "Track stagnant water clusters and high-risk areas using smart maps.",
+            title: "Risk Zones 🗺️",
+            desc: "Track high-risk areas and stagnant water with smart maps.",
+            link: "/map"
         },
         {
-            title: "🧑‍🤝‍🧑 Community Resolutions",
-            desc: "Other citizens can resolve your complaint and upload proof — verified by you!",
+            title: "Community Resolutions 🧑‍🤝‍🧑",
+            desc: "Citizens resolve complaints with verified proof you can confirm!",
+            link: "/community"
         },
     ];
 
     return (
         <div className="container-fluid px-0 home-root">
-
             {/* Hero Section */}
-            <section className="bg-primary text-white text-center py-5 hero-section">
-                <h1 className="display-4 fw-bold animate-fadeZoom">Welcome to <span className="text-warning">SwasthGram</span></h1>
-                <p className="lead animate-fadeZoom">Your AI-powered hygiene guardian for smarter and cleaner communities.</p>
-                <div className="mt-4 d-flex justify-content-center gap-3 flex-wrap">
-                    <a href="/report" className="btn btn-danger btn-lg">📷 Report Issue</a>
-                    <a href="/map" className="btn btn-info btn-lg">🗺️ Explore Risk Zones</a>
+            <section className="hero-section text-white text-center py-5">
+                <div className="hero-gradient">
+                    <div className="particle-background"></div>
+                    <div className="bubble-background">
+                        <div className="bubble bubble-1"></div>
+                        <div className="bubble bubble-2"></div>
+                        <div className="bubble bubble-3"></div>
+                        <div className="bubble bubble-4"></div>
+                        <div className="bubble bubble-5"></div>
+                        <div className="bubble bubble-6"></div>
+                    </div>
                 </div>
+
+                {/* Floating AI Mascot */}
+                <div className="ai-mascot floating">🏘️</div>
+
+                {/* Typewriter Animated Heading */}
+                <h1 className={`display-4 fw-bold ${showTypewriter ? 'typewriter-text' : ''}`}>
+                    Welcome to <span className="text-warning">SwasthGram</span>
+                </h1>
+                <p className="lead">Your AI-powered hygiene guardian for cleaner communities.</p>
             </section>
 
             {/* About Section */}
@@ -44,9 +71,7 @@ const Home = () => {
                 <div className="container">
                     <h2 className="mb-3 section-title">About SwasthGram</h2>
                     <p className="lead mx-auto" style={{ maxWidth: '700px' }}>
-                        SwasthGram is a public hygiene monitoring platform that empowers citizens to report
-                        cleanliness issues using AI, geolocation, and community support. By harnessing collective action,
-                        we aim to build a healthier and more aware society.
+                        SwasthGram empowers citizens to report hygiene issues using AI, geolocation, and community support, fostering healthier societies through collective action.
                     </p>
                 </div>
             </section>
@@ -57,16 +82,17 @@ const Home = () => {
                     <h2 className="text-center mb-5 section-title">✨ Key Features</h2>
                     <div className="row justify-content-center g-4">
                         {features.map((feature, idx) => (
-                            <div key={idx} className="col-md-4 feature-card-wrapper">
-                                <div
-                                    className="card h-100 shadow-sm text-center feature-card animate-fadeInUp"
+                            <div key={idx} className="col-md-4 feature-button-wrapper">
+                                <button
+                                    className="feature-button animate-fadeInUp"
                                     style={{ animationDelay: `${idx * 0.1}s` }}
+                                    onClick={() => window.location.href = feature.link}
                                 >
-                                    <div className="card-body">
-                                        <h5 className="card-title">{feature.title}</h5>
-                                        <p className="card-text">{feature.desc}</p>
+                                    <div className="feature-button-content">
+                                        <h5 className="feature-title">{feature.title}</h5>
+                                        <p className="feature-text">{feature.desc}</p>
                                     </div>
-                                </div>
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -78,11 +104,11 @@ const Home = () => {
                 <div className="container">
                     <h2 className="mb-4 section-title">🛠️ How It Works</h2>
                     <ol className="text-start mx-auto" style={{ maxWidth: '600px', lineHeight: '1.8' }}>
-                        <li>📸 Upload a photo of the hygiene issue</li>
-                        <li>🤖 AI analyzes and detects the problem</li>
+                        <li>📸 Upload a hygiene issue photo</li>
+                        <li>🤖 AI detects the problem</li>
                         <li>📍 Pin the location</li>
                         <li>✅ Submit your report</li>
-                        <li>🌟 Community helps resolve it!</li>
+                        <li>🌟 Community resolves it!</li>
                     </ol>
                 </div>
             </section>
