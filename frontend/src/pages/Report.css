@@ -2,18 +2,18 @@
     margin-top: 0px;
     padding: 2rem;
     max-width: 1000px;
-    background: #ffffff;
+    background: var(--card-bg-light);
     border-radius: 12px;
-
+    z-index: 3;
 }
 
 body.dark .report-page {
-    background: #1c1c2c;
-    color: #f0f0f0;
+    background: var(--card-bg-dark);
+    color: var(--dark-text-color);
 }
 
 .report-title {
-    color: #2E3192;
+    color: var(--secondary-btn-color);
     font-weight: 600;
     margin-bottom: 1rem;
 }
@@ -46,11 +46,12 @@ body.dark .report-title {
     border-radius: 8px;
     position: relative;
     overflow: hidden;
+    z-index: 3;
 }
 
 body.dark .map-wrapper {
     border-color: #555;
-    background-color: #2a2a3a;
+    background-color: var(--card-bg-dark);
 }
 
 .custom-zoom-controls {
